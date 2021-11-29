@@ -24,6 +24,9 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         signUpActivity = this;
         getItemById();
+        checkpassword = new checkInput();
+        checkname = new checkInput();
+        checkemail = new checkInput();
 
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,16 +49,15 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void sign_up() {
         if (checkname.isValid() && checkemail.isValid() && checkpassword.isValid()) {
-            //save to rom
 
-            //Verificar se ja existe este email registado
+            //Verificar se ja existe este email registado e armazenar os dados
+            //TODO
             if (true) {
-                Toast.makeText(this, "Sign up completed", Toast.LENGTH_LONG).show();
+                Toast.makeText(signUpActivity, "Sign up completed", Toast.LENGTH_LONG).show();
                 finish();
-                Toast.makeText(this, "Sign up completed", Toast.LENGTH_LONG).show();
-                finish();
+
             } else {
-                Toast.makeText(this, "Email already registed", Toast.LENGTH_LONG).show();
+                Toast.makeText(signUpActivity, "Email already registed", Toast.LENGTH_LONG).show();
             }
 
         }
