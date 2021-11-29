@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="100dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/logo" />
 
 
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/logo"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="10dp"
                 android:text="buildCollab"
                 android:textColor="@color/black"
                 android:textSize="40sp" />
@@ -44,7 +44,7 @@
                 android:layout_marginTop="100dp"
                 android:background="@drawable/button"
                 android:gravity="center"
-                android:text="Sign Up" />
+                android:text="@string/sign_up" />
 
             <Button
                 android:id="@+id/Loginbutton"
@@ -53,9 +53,9 @@
                 android:layout_below="@id/Signupbutton"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-                android:gravity="center"
                 android:background="@drawable/button"
-                android:text="Login" />
+                android:gravity="center"
+                android:text="@string/login" />
 
         </RelativeLayout>
 

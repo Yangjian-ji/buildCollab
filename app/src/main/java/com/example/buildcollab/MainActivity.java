@@ -8,13 +8,15 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private Button gotosignup, gotologin;
+    Button gotosignup, gotologin;
+    private MainActivity mainActivity;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainActivity = this;
         gotosignup = findViewById(R.id.Signupbutton);
         gotologin = findViewById(R.id.Loginbutton);
         setListener();
@@ -35,15 +37,14 @@ public class MainActivity extends AppCompatActivity {
 
             switch (v.getId()) {
                 case R.id.Signupbutton:
-                    //       intent = new Intent(this, MainActivity.class);
+                    intent = new Intent(mainActivity, SignUpActivity.class);
                     break;
                 case R.id.Loginbutton:
-                    //      intent = new Intent(this, MainActivity.class);
+                    intent = new Intent(mainActivity, LoginActivity.class);
                     break;
-
             }
             startActivity(intent);
-            finish();
+
         }
     }
 }
