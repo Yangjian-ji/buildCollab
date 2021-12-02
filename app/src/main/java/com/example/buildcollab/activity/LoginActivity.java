@@ -1,4 +1,4 @@
-package com.example.buildcollab;
+package com.example.buildcollab.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.buildcollab.R;
 import com.example.buildcollab.utils.checkInput;
 import com.example.buildcollab.utils.onclick;
 
@@ -29,19 +30,23 @@ public class LoginActivity extends AppCompatActivity {
 
         checkemail = new checkInput();
         checkpassword = new checkInput();
-
+        //Inicia as verificacoes
         checkemail.normalInputVerification(email);
         checkpassword.normalInputVerification(password);
 
+        //Efeito do clique
         onclick.buttonEffect(goback);
+        onclick.buttonEffect(login);
+
+
+        //Volta a pagina anterior
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
-        onclick.buttonEffect(login);
+        //Da o login e vai a homepage
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

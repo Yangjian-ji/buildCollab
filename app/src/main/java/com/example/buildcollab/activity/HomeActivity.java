@@ -1,4 +1,4 @@
-package com.example.buildcollab;
+package com.example.buildcollab.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -7,6 +7,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.buildcollab.R;
+import com.example.buildcollab.fragments.ChatFragment;
+import com.example.buildcollab.fragments.GroupFragment;
+import com.example.buildcollab.fragments.HomeFragment;
+import com.example.buildcollab.fragments.ProjectFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -47,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment).commit();
+             
 
                 return true;
             }

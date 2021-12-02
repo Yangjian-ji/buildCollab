@@ -1,4 +1,4 @@
-package com.example.buildcollab;
+package com.example.buildcollab.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.buildcollab.R;
 import com.example.buildcollab.utils.onclick;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,9 +22,12 @@ public class MainActivity extends AppCompatActivity {
         mainActivity = this;
 
         getItembyId();
-
+        //Efeitos do clique
         onclick.buttonEffect(gotologin);
         onclick.buttonEffect(gotosignup);
+        /**
+         * Depois do clique salta para o login
+         */
         gotologin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        /**
+         * Depois do clique salta para o signup
+         */
         gotosignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,7 +48,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void getItembyId(){
+    /**
+     * Pega as coisas pelo id
+     */
+    public void getItembyId() {
         gotosignup = findViewById(R.id.Signupbutton);
         gotologin = findViewById(R.id.Loginbutton);
     }

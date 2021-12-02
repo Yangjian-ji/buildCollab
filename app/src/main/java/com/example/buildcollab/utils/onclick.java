@@ -6,7 +6,10 @@ import android.view.MotionEvent;
 import android.view.View;
 
 public class onclick {
-
+    /**
+     * Mostrar o efeito do clique do botao
+     * @param button
+     */
     public static void buttonEffect(View button) {
         button.setOnTouchListener(new View.OnTouchListener() {
 

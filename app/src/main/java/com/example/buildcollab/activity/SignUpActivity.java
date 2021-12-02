@@ -1,4 +1,4 @@
-package com.example.buildcollab;
+package com.example.buildcollab.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.buildcollab.R;
 import com.example.buildcollab.utils.checkInput;
 import com.example.buildcollab.utils.onclick;
 
@@ -29,30 +30,35 @@ public class SignUpActivity extends AppCompatActivity {
         checkpassword = new checkInput();
         checkname = new checkInput();
         checkemail = new checkInput();
+        //Verificar os inputs
+        checkname.normalInputVerification(name);
+        checkemail.emailInputVerification(email);
+        checkpassword.cpasswordVerification(password, cpassword);
 
+        //Volta a pagina anterior
         goback.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
 
+        //Efeitos do clique
         onclick.buttonEffect(goback);
+        onclick.buttonEffect(signup);
 
-
+        //Da o registo
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sign_up();
             }
         });
-        onclick.buttonEffect(signup);
 
 
 
-        checkname.normalInputVerification(name);
-        checkemail.emailInputVerification(email);
-        checkpassword.cpasswordVerification(password, cpassword);
+
 
     }
 
@@ -62,10 +68,13 @@ public class SignUpActivity extends AppCompatActivity {
             //Verificar se ja existe este email registado e armazenar os dados
             //TODO
             if (true) {
+                //Pop up de mensagem e fecha a pagina
                 Toast.makeText(signUpActivity, "Sign up completed", Toast.LENGTH_LONG).show();
                 finish();
 
             } else {
+
+                //Pop up de mensagem
                 Toast.makeText(signUpActivity, "Email already registed", Toast.LENGTH_LONG).show();
             }
 

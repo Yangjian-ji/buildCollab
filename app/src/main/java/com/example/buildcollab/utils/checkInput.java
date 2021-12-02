@@ -4,6 +4,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
+/**
+ * Class inutil neste trabalho, apenas serve para verficar os editText
+ */
 public class checkInput {
 
     boolean valid;
@@ -15,6 +18,11 @@ public class checkInput {
     public boolean isValid() {
         return valid;
     }
+
+    /**
+     * Verificar se escreveu bem o email
+     * @param input
+     */
 
     public void emailInputVerification(EditText input) {
         TextWatcher watcher = new TextWatcher() {
@@ -41,6 +49,10 @@ public class checkInput {
         input.addTextChangedListener(watcher);
     }
 
+    /**
+     * Verifica se inseriu alguma coisa
+     * @param input
+     */
     public void normalInputVerification(EditText input) {
         TextWatcher watcher = new TextWatcher() {
             @Override
@@ -66,6 +78,11 @@ public class checkInput {
         input.addTextChangedListener(watcher);
     }
 
+    /**
+     * Verifica se e igual a pass e a pass de confirmacao
+     * @param password
+     * @param cpassword
+     */
     public void cpasswordVerification(EditText password, EditText cpassword) {
         TextWatcher watcher = new TextWatcher() {
             @Override
