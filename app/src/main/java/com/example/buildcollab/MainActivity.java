@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.buildcollab.utils.onclick;
+
 public class MainActivity extends AppCompatActivity {
     Button gotosignup, gotologin;
     private MainActivity mainActivity;
@@ -17,34 +19,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainActivity = this;
+
+        getItembyId();
+
+        onclick.buttonEffect(gotologin);
+        onclick.buttonEffect(gotosignup);
+        gotologin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(mainActivity, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        gotosignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mainActivity, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void getItembyId(){
         gotosignup = findViewById(R.id.Signupbutton);
         gotologin = findViewById(R.id.Loginbutton);
-        setListener();
     }
 
-    private void setListener() {
-        Onclick onclick = new Onclick();
-        gotosignup.setOnClickListener(onclick);
-        gotologin.setOnClickListener(onclick);
 
-    }
-
-    private class Onclick implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = null;
-
-            switch (v.getId()) {
-                case R.id.Signupbutton:
-                    intent = new Intent(mainActivity, SignUpActivity.class);
-                    break;
-                case R.id.Loginbutton:
-                    intent = new Intent(mainActivity, LoginActivity.class);
-                    break;
-            }
-            startActivity(intent);
-
-        }
-    }
 }

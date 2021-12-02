@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.utils.checkInput;
+import com.example.buildcollab.utils.onclick;
 
 public class SignUpActivity extends AppCompatActivity {
     private SignUpActivity signUpActivity;
@@ -24,6 +25,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         signUpActivity = this;
         getItemById();
+
         checkpassword = new checkInput();
         checkname = new checkInput();
         checkemail = new checkInput();
@@ -35,12 +37,19 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+        onclick.buttonEffect(goback);
+
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sign_up();
             }
         });
+        onclick.buttonEffect(signup);
+
+
+
         checkname.normalInputVerification(name);
         checkemail.emailInputVerification(email);
         checkpassword.cpasswordVerification(password, cpassword);
@@ -48,7 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void sign_up() {
-        if (checkname.isValid() && checkemail.isValid() && checkpassword.isValid()) {
+      //  if (checkname.isValid() && checkemail.isValid() && checkpassword.isValid()) {
 
             //Verificar se ja existe este email registado e armazenar os dados
             //TODO
@@ -60,13 +69,13 @@ public class SignUpActivity extends AppCompatActivity {
                 Toast.makeText(signUpActivity, "Email already registed", Toast.LENGTH_LONG).show();
             }
 
-        }
+      //  }
 
     }
 
     private void getItemById() {
-        goback = findViewById(R.id.goback);
-        signup = findViewById(R.id.Signupbutton);
+        goback = findViewById(R.id.goback_signup);
+        signup = findViewById(R.id.signup);
         name = findViewById(R.id.name_input);
         email = findViewById(R.id.email_input);
         password = findViewById(R.id.password_input);

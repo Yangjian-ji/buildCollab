@@ -14,7 +14,7 @@
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:id="@+id/goback"
+                android:id="@+id/goback_login"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="50dp"
@@ -31,7 +31,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
-                android:layout_toEndOf="@+id/goback"
+                android:layout_toEndOf="@+id/goback_login"
                 android:text="@string/login"
                 android:textColor="@color/black"
                 android:textSize="40sp" />
@@ -41,8 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@+id/Login_text"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="150dp"
                 android:layout_marginEnd="50dp"

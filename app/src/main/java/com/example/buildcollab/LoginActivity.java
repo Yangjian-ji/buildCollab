@@ -5,17 +5,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.utils.checkInput;
+import com.example.buildcollab.utils.onclick;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginActivity loginActivity;
-    private EditText name, password;
+    private EditText email, password;
     private Button login;
-    private checkInput checkname, checkpassword;
+    private ImageButton goback;
+    private checkInput checkemail, checkpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,25 +26,38 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         getItemById();
         loginActivity = this;
-        checkname.normalInputVerification(name);
+
+        checkemail = new checkInput();
+        checkpassword = new checkInput();
+
+        checkemail.normalInputVerification(email);
         checkpassword.normalInputVerification(password);
 
+        onclick.buttonEffect(goback);
+        goback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        onclick.buttonEffect(login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = null;
 
-                if (checkname.isValid() && checkpassword.isValid()) {
-                    //Verificar se existe a conta e a pass ser igual
+                //  if (checkemail.isValid() && checkpassword.isValid()) {
+                //Verificar se existe a conta e a pass ser igual
 
-                    //TODO
+                //TODO
 
 
-                    //intent = new Intent(loginActivity , XXX.class)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
-                }
+                intent = new Intent(loginActivity, HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                //}
 
             }
         });
@@ -49,10 +65,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void getItemById() {
-        name = findViewById(R.id.name_input);
+        goback = findViewById(R.id.goback_login);
+        email = findViewById(R.id.email_input);
         password = findViewById(R.id.password_input);
-        checkname = new checkInput();
-        checkpassword = new checkInput();
+
         login = findViewById(R.id.login);
     }
 }

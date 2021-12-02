@@ -16,7 +16,7 @@ public class checkInput {
         return valid;
     }
 
-    public void  emailInputVerification(EditText input){
+    public void emailInputVerification(EditText input) {
         TextWatcher watcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -30,15 +30,17 @@ public class checkInput {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(input.getText().toString().contains("@")){
-                    valid=true;
-                }else{
+                if (input.getText().toString().contains("@")) {
+                    valid = true;
+                } else {
                     valid = false;
                     input.setError("This is not a valid email");
                 }
             }
         };
+        input.addTextChangedListener(watcher);
     }
+
     public void normalInputVerification(EditText input) {
         TextWatcher watcher = new TextWatcher() {
             @Override
@@ -61,6 +63,7 @@ public class checkInput {
                 }
             }
         };
+        input.addTextChangedListener(watcher);
     }
 
     public void cpasswordVerification(EditText password, EditText cpassword) {
@@ -85,5 +88,6 @@ public class checkInput {
                 }
             }
         };
+        cpassword.addTextChangedListener(watcher);
     }
 }
