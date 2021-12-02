@@ -52,7 +52,6 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragment).commit();
-             
 
                 return true;
             }
