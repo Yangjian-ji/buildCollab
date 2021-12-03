@@ -20,14 +20,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View InputFragmentView = inflater.inflate(R.layout.fragment_home, container, false);
-        c = InputFragmentView.findViewById(R.id.test);
-
-        c.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Clique!", Toast.LENGTH_LONG).show();
-            }
-        });
         return InputFragmentView;
 
     }

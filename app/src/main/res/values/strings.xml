@@ -10,4 +10,9 @@
     <string name="my_group">MyGroup</string>
     <string name="my_project">MyProject</string>
     <string name="chat">Chat</string>
+    <string name="search">Search</string>
+    <string name="filter_group">Filter Groups</string>
+    <string name="new_group">+ New Group</string>
+    <string name="filter_projects">Filter Projects</string>
+    <string name="new_project">+ New Project</string>
 </resources>

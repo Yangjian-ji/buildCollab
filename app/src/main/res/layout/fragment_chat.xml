@@ -4,5 +4,51 @@
     android:layout_height="match_parent"
     android:background="#F1B1EE">
 
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="240dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_toStartOf="@id/profile"
+            android:background="@drawable/rectangle"
+            android:backgroundTint="@color/white"
+            android:drawableStart="@drawable/ic_baseline_search_24"
+            android:hint="@string/search"
+            android:imeOptions="actionSearch"
+            android:paddingStart="15dp" />
+
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button"
+            android:backgroundTint="@color/white"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_person_24" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reclycleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>
