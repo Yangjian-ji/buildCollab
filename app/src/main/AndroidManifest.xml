@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BuildCollab">
         <activity
+            android:name=".activity.NewGroupActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.NewProjectActivity"
             android:exported="true" />
         <activity

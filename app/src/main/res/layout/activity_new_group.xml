@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.NewProjectActivity">
 
     <ScrollView
@@ -22,23 +23,23 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:text="@string/create_project"
+                android:text="@string/create_group"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/projectTitleText"
+                android:id="@+id/groupNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
-                android:text="@string/project_title"
-                android:textSize="17sp" />
+                android:text="@string/group_name"
+                android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/projectTitle"
+                android:id="@+id/groupName"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_below="@id/title"
@@ -46,30 +47,29 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="20dp"
-                android:layout_toEndOf="@id/projectTitleText"
+                android:layout_toEndOf="@id/groupNameText"
                 android:background="@drawable/input_text"
                 android:maxLines="1"
                 android:paddingStart="10dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
-                android:id="@+id/projectDescriptionTitle"
+                android:id="@+id/groupDescriptionText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/projectTitle"
+                android:layout_below="@id/groupNameText"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/project_description"
+                android:text="@string/group_description"
                 android:textSize="17sp" />
 
 
             <EditText
-
-                android:id="@+id/projectDescription"
+                android:id="@+id/groupDescription"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_below="@id/projectDescriptionTitle"
+                android:layout_below="@id/groupDescriptionText"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="20dp"
@@ -78,91 +78,45 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
-                android:id="@+id/relatedTagTitle"
+                android:id="@+id/areaOfInterestText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/projectDescription"
+                android:layout_below="@id/groupDescription"
                 android:layout_alignParentStart="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/related_tags_ex_game_development"
+                android:text="Area of Interest(ex: Animation)"
                 android:textSize="17sp" />
 
             <EditText
-                android:id="@+id/chip1"
+                android:id="@+id/areaOfInterest"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_below="@id/relatedTagTitle"
+                android:layout_below="@id/areaOfInterestText"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/input_text"
-                android:maxLines="1"
-                android:paddingStart="20dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
-            <TextView
-                android:id="@+id/requiredKnowledgeTitle"
+            <Button
+                android:id="@+id/addphoto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/chip1"
-                android:layout_alignParentStart="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="20dp"
-                android:text="@string/required_knowledge"
-                android:textSize="17sp" />
-
-            <EditText
-                android:id="@+id/requiredKnowledge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/requiredKnowledgeTitle"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/input_text"
-                android:maxLines="1"
-                android:minHeight="48dp"
-                android:padding="10dp"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <TextView
-                android:id="@+id/mgstitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/requiredKnowledge"
-                android:layout_alignParentStart="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="20dp"
-                android:text="@string/minimum_group_size"
-                android:textSize="17sp" />
-
-            <EditText
-                android:id="@+id/memberN"
-                android:layout_width="60dp"
-                android:layout_height="48dp"
-                android:layout_below="@id/requiredKnowledge"
-                android:layout_marginStart="20dp"
-                android:layout_toEndOf="@id/mgstitle"
-                android:background="@drawable/input_text"
-                android:hint="0"
-                android:inputType="number"
-                android:maxLines="1"
-                android:paddingStart="25dp" />
+                android:layout_below="@id/areaOfInterest"
+                android:layout_margin="10dp"
+                android:background="@color/white"
+                android:text="Photo+" />
 
             <TextView
                 android:id="@+id/law"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/mgstitle"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="22dp"
-                android:text="@string/fields_marked_with_asterisk_are_mandatory"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:layout_below="@id/addphoto"
+                android:layout_margin="10dp"
+                android:text="@string/fields_marked_with_asterisk_are_mandatory" />
 
             <Button
                 android:id="@+id/create"
@@ -171,7 +125,7 @@
                 android:layout_below="@id/law"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/button"
                 android:text="@string/create"

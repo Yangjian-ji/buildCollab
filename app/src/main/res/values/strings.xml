@@ -23,4 +23,7 @@
     <string name="related_tags_ex_game_development">Related Tags(ex: game development)</string>
     <string name="fields_marked_with_asterisk_are_mandatory">* fields marked with asterisk are mandatory</string>
     <string name="create">Create</string>
+    <string name="create_group">Create Group</string>
+    <string name="group_name">Group Name* :</string>
+    <string name="group_description">Group Description* :</string>
 </resources>
