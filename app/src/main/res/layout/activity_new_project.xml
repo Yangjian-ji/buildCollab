@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.NewProjectActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="@string/create_project"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/projectTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/project_title"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/projectTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@id/projectTitleText"
+                android:background="@drawable/input_text"
+                android:maxLines="1"
+                android:paddingStart="10dp" />
+
+            <TextView
+                android:id="@+id/projectDescriptionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/projectTitle"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/project_description"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/projectDescription"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_below="@id/projectDescriptionTitle"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/input_text"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/relatedTagTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/projectDescription"
+                android:layout_alignParentStart="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/related_tags_ex_game_development"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/chip1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/relatedTagTitle"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/input_text"
+                android:maxLines="1"
+                android:paddingStart="20dp" />
+
+            <TextView
+                android:id="@+id/requiredKnowledgeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/chip1"
+                android:layout_alignParentStart="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:text="@string/required_knowledge"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/requiredKnowledge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/requiredKnowledgeTitle"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/input_text"
+                android:maxLines="1"
+                android:padding="10dp" />
+
+            <TextView
+                android:id="@+id/mgstitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/requiredKnowledge"
+                android:layout_alignParentStart="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:text="@string/minimum_group_size"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/memberN"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:layout_below="@id/requiredKnowledge"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/mgstitle"
+                android:background="@drawable/input_text"
+                android:hint="0"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingStart="25dp" />
+
+            <TextView
+                android:id="@+id/law"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mgstitle"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="22dp"
+                android:text="@string/fields_marked_with_asterisk_are_mandatory"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/create"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@id/law"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/button"
+                android:text="@string/create"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

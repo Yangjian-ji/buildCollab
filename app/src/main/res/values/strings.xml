@@ -15,4 +15,12 @@
     <string name="new_group">+ New Group</string>
     <string name="filter_projects">Filter Projects</string>
     <string name="new_project">+ New Project</string>
+    <string name="create_project">Create Project</string>
+    <string name="project_title">Project Title * :</string>
+    <string name="project_description">Project Description* :</string>
+    <string name="minimum_group_size">Minimum group size</string>
+    <string name="required_knowledge">Required Knowledge</string>
+    <string name="related_tags_ex_game_development">Related Tags(ex: game development)</string>
+    <string name="fields_marked_with_asterisk_are_mandatory">* fields marked with asterisk are mandatory</string>
+    <string name="create">Create</string>
 </resources>
