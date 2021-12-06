@@ -15,6 +15,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageButton
+                android:id="@+id/goback"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/go_back" />
 
             <TextView
                 android:id="@+id/title"
@@ -40,7 +49,7 @@
             <EditText
                 android:id="@+id/projectTitle"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/title"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="10dp"
@@ -49,6 +58,7 @@
                 android:layout_toEndOf="@id/projectTitleText"
                 android:background="@drawable/input_text"
                 android:maxLines="1"
+                android:minHeight="45dp"
                 android:paddingStart="10dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
@@ -68,7 +78,8 @@
 
                 android:id="@+id/projectDescription"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
+                android:minHeight="150dp"
                 android:layout_below="@id/projectDescriptionTitle"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
@@ -92,14 +103,15 @@
             <EditText
                 android:id="@+id/chip1"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
                 android:layout_below="@id/relatedTagTitle"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/input_text"
-                android:maxLines="1"
+
                 android:paddingStart="20dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 

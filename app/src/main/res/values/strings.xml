@@ -26,4 +26,7 @@
     <string name="create_group">Create Group</string>
     <string name="group_name">Group Name* :</string>
     <string name="group_description">Group Description* :</string>
+    <string name="description">Description:</string>
+    <string name="interests">Interests: </string>
+    <string name="portefolio">Portefolio</string>
 </resources>
