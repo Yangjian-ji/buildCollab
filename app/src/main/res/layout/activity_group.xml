@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ProfileActivity">
+    tools:context=".activity.GroupActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,40 +27,76 @@
                 android:background="@drawable/go_back"
                 tools:ignore="SpeakableTextPresentCheck" />
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/userPhoto"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_centerHorizontal="true"
+            <TextView
+                android:id="@+id/memberN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/goback"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:maxWidth="100dp"
+                android:text="@string/member"
+                android:textSize="20sp" />
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/groupPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="129dp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/ic_baseline_person_24"
+                android:minWidth="150dp"
+                android:minHeight="150dp"
+                android:src="@drawable/ic_baseline_group_24"
                 app:civ_border_color="#FF000000"
-                app:civ_border_width="0.5dp">
+                app:civ_border_width="1dp" />
 
 
-            </de.hdodenhof.circleimageview.CircleImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="50dp"
+                android:text="Public"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/askForInvite"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@id/groupPhoto"
+                android:text="@string/join" />
 
             <TextView
 
-                android:id="@+id/userName"
+                android:id="@+id/groupName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/userPhoto"
+                android:layout_below="@id/groupPhoto"
                 android:layout_centerHorizontal="true"
                 android:text="@string/name"
                 android:textSize="25sp" />
 
             <ImageButton
-                android:id="@+id/editName"
+                android:id="@+id/editproject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/userPhoto"
+                android:layout_below="@id/groupPhoto"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_toEndOf="@id/userName"
+                android:layout_toEndOf="@id/groupName"
                 android:background="@drawable/ic_baseline_edit_24"
                 android:minWidth="30dp"
                 android:minHeight="30dp"
@@ -69,7 +106,7 @@
                 android:id="@+id/descriptionText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/userName"
+                android:layout_below="@id/groupName"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/description"
@@ -79,7 +116,7 @@
                 android:id="@+id/editDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/userName"
+                android:layout_below="@id/groupName"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="25dp"
@@ -103,20 +140,20 @@
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <TextView
-                android:id="@+id/interestText"
+                android:id="@+id/areaOfDiscussionText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/description"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/interests"
+                android:text="@string/area_of_discussion"
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/interest"
+                android:id="@+id/areaOfDiscussion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/interestText"
+                android:layout_below="@id/areaOfDiscussionText"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
@@ -125,43 +162,7 @@
                 android:minHeight="48dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
-            <TextView
-                android:id="@+id/portefolioText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/interest"
-                android:layout_marginStart="20dp"
-                android:text="@string/portefolio"
-                android:textSize="25sp" />
 
-            <ImageButton
-                android:id="@+id/editPortefolio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/interest"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_toEndOf="@id/portefolioText"
-                android:background="@drawable/ic_baseline_edit_24"
-                android:minWidth="30dp"
-                android:minHeight="30dp"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-            <EditText
-                android:id="@+id/portefolio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/portefolioText"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/input_text"
-                android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
         </RelativeLayout>
 
     </ScrollView>

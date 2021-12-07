@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.buildcollab.R;
 
-public class profileActivity extends AppCompatActivity {
+public class GroupActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_group);
     }
 }

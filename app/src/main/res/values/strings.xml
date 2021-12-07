@@ -29,4 +29,9 @@
     <string name="description">Description:</string>
     <string name="interests">Interests: </string>
     <string name="portefolio">Portefolio</string>
+    <string name="areas_of_work">Areas Of Work: </string>
+    <string name="ask_for_invite">Ask for invite</string>
+    <string name="join">Join</string>
+    <string name="member">Member</string>
+    <string name="area_of_discussion">Area of Discussion:</string>
 </resources>
