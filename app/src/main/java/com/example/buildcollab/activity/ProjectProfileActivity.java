@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.buildcollab.R;
 
-public class ProjectActivity extends AppCompatActivity {
+public class ProjectProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project);
+        setContentView(R.layout.activity_project_profile);
     }
 }
