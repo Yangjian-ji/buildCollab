@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BuildCollab">
         <activity
+            android:name=".activity.QrCodeActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.GroupProfileActivity"
             android:exported="true" />
         <activity

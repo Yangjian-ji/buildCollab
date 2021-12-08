@@ -34,10 +34,17 @@
                 android:layout_marginTop="50dp"
                 android:src="@drawable/ic_baseline_person_24"
                 app:civ_border_color="#FF000000"
-                app:civ_border_width="0.5dp">
+                app:civ_border_width="0.5dp" />
 
 
-            </de.hdodenhof.circleimageview.CircleImageView>
+            <ImageView
+                android:id="@+id/qrcodeimage"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_baseline_qr_code_24" />
 
             <TextView
 
@@ -162,6 +169,43 @@
                 android:background="@drawable/input_text"
                 android:minHeight="48dp"
                 tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageView
+                android:id="@+id/whatappContactImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/portefolio"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/ic_baseline_whatsapp_24" />
+
+            <TextView
+                android:id="@+id/whatappContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/portefolio"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/whatappContactImage"
+                android:text="+351 9XXXXXXXX"
+                android:textSize="20sp" />
+
+            <ImageButton
+                android:id="@+id/editWhatsAppContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/portefolio"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@id/whatappContact"
+                android:background="@drawable/ic_baseline_edit_24"
+                android:minWidth="30dp"
+                android:minHeight="30dp"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
         </RelativeLayout>
 
     </ScrollView>

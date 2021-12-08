@@ -1,9 +1,11 @@
 package com.example.buildcollab.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,11 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.activity.ProfileActivity;
 
 public class HomeFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ImageView profile;
 
     @Nullable
     @Override
@@ -34,7 +38,15 @@ public class HomeFragment extends Fragment {
         //   mAdapter = new MyAdapter(LoadData);
         mRecyclerView.setAdapter(mAdapter);
 
+        profile = (ImageView) InputFragmentView.findViewById(R.id.profile);
 
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
         return InputFragmentView;
 
     }
