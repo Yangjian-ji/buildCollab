@@ -6,24 +6,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.activity.GroupProfileActivity;
 import com.example.buildcollab.activity.NewGroupActivity;
 import com.example.buildcollab.activity.ProfileActivity;
+import com.example.buildcollab.activity.ProjectActivity;
+import com.example.buildcollab.utils.DatabaseHelperGroups;
+import com.example.buildcollab.utils.Groups;
+import com.example.buildcollab.utils.MyGroupAdapter;
+import com.example.buildcollab.utils.MyProjectsAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GroupFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private ImageView profile;
+    private DatabaseHelperGroups database_helper;
+    private List<Groups> groups;
 
     @Nullable
     @Override
@@ -41,13 +51,13 @@ public class GroupFragment extends Fragment {
         mRecyclerView = InputFragmentView.findViewById(R.id.reclycleview);
         mRecyclerView.setHasFixedSize(true);
 
-        mLayoutManager = new LinearLayoutManager(InputFragmentView.getContext());
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        database_helper = new DatabaseHelperGroups(getContext());
 
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(InputFragmentView.getContext()));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        //Falta a leitura dos dados
-        //   mAdapter = new MyAdapter(LoadData);
-        mRecyclerView.setAdapter(mAdapter);
+        displayGroups();
+
         profile = InputFragmentView.findViewById(R.id.profile);
 
         profile.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +67,30 @@ public class GroupFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
         return InputFragmentView;
+    }
+
+    private void displayGroups() {
+        groups = new ArrayList<>(database_helper.getGroups());
+        MyGroupAdapter.OnItemClickListener listener = groups -> {
+            Intent intent = new Intent(getActivity(), GroupProfileActivity.class);
+            Bundle b = new Bundle();
+            b.putInt("id", Integer.parseInt(groups.getGroupId()));
+            intent.putExtras(b);
+            startActivity(intent);
+        };
+        mAdapter = new MyGroupAdapter(getContext(), getActivity(), groups, listener);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mRecyclerView != null) {
+            displayGroups();
+            mRecyclerView.invalidate();
+        }
     }
 }

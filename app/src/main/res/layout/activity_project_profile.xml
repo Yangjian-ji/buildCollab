@@ -62,6 +62,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_toEndOf="@id/projectPhoto"
                 android:text="@string/ask_for_invite" />
+
             <TextView
 
                 android:id="@+id/projectName"

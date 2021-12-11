@@ -19,6 +19,7 @@ import com.example.buildcollab.R;
 import com.example.buildcollab.activity.NewProjectActivity;
 import com.example.buildcollab.activity.ProfileActivity;
 import com.example.buildcollab.activity.ProjectActivity;
+import com.example.buildcollab.activity.ProjectProfileActivity;
 import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.MyProjectsAdapter;
 import com.example.buildcollab.utils.Project;
@@ -76,7 +77,7 @@ public class ProjectFragment extends Fragment {
     private void displayProjects() {
         projects = new ArrayList<>(database_helper.getProjects());
         MyProjectsAdapter.OnItemClickListener listener = project -> {
-            Intent intent = new Intent(getActivity(), ProjectActivity.class);
+            Intent intent = new Intent(getActivity(), ProjectProfileActivity.class);
             Bundle b = new Bundle();
             b.putInt("id", Integer.parseInt(project.getProjectId()));
             intent.putExtras(b);

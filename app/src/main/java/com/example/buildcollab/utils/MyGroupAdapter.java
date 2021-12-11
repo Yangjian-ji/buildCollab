@@ -15,46 +15,51 @@ import com.example.buildcollab.R;
 
 import java.util.List;
 
-public class MyProjectsAdapter extends RecyclerView.Adapter<MyProjectsAdapter.viewHolder> {
-
-    public interface OnItemClickListener {
-        void onItemClick(Project project);
-    }
+public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.viewHolder> {
 
     private Context context;
     private Activity activity;
-    private List<Project> projects;
+    private List<Groups> groups;
     private DatabaseHelper database_helper;
     private OnItemClickListener listener;
 
-    public MyProjectsAdapter(Context context, Activity activity, List<Project> projects, OnItemClickListener listener) {
-        this.context = context;
-        this.activity = activity;
-        this.projects = projects;
-        this.listener = listener;
+    public interface OnItemClickListener {
+        void onItemClick(Groups groups);
     }
 
-    @Override
-    public MyProjectsAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.project_item, viewGroup, false);
+    public MyGroupAdapter(Context context, Activity activity, List<Groups> groups, OnItemClickListener listener) {
+        this.context = context;
+        this.activity = activity;
+        this.groups = groups;
+        this.listener = listener;
+
+    }
+
+    @NonNull
+    public viewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
+        View view = LayoutInflater.from(context).inflate(R.layout.group_item, viewGroup, false);
         return new viewHolder(view);
     }
 
-    @Override
-    public void onBindViewHolder(final MyProjectsAdapter.viewHolder holder, int position) {
+
+    public void onBindViewHolder(final MyGroupAdapter.viewHolder holder, int position) {
         int mLastPosition = holder.getAdapterPosition();
-        holder.title.setText(projects.get(mLastPosition).getTitle());
-        holder.description.setText(projects.get(mLastPosition).getDescription());
+        holder.title.setText(groups.get(mLastPosition).getTitle());
+        holder.description.setText(groups.get(mLastPosition).getDescription());
         database_helper = new DatabaseHelper(context);
-        holder.bind(projects.get(position), listener);
+        holder.bind(groups.get(position), listener);
+
     }
 
     @Override
     public int getItemCount() {
-        return projects.size();
+        return groups.size();
     }
 
+
     public class viewHolder extends RecyclerView.ViewHolder {
+
         TextView title, description;
         ImageView delete, edit;
 
@@ -66,7 +71,7 @@ public class MyProjectsAdapter extends RecyclerView.Adapter<MyProjectsAdapter.vi
             edit = itemView.findViewById(R.id.edit);
         }
 
-        public void bind(Project item, OnItemClickListener listener) {
+        public void bind(Groups item, OnItemClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

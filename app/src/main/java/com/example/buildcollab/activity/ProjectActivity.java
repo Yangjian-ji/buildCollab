@@ -17,7 +17,7 @@ public class ProjectActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project);
+        setContentView(R.layout.activity_project_profile);
 
         findViewById(R.id.goback).setOnClickListener(v -> finish());
 
@@ -27,7 +27,7 @@ public class ProjectActivity extends AppCompatActivity {
         int projectId = b.getInt("id");
         DatabaseHelper database_helper = new DatabaseHelper(getApplicationContext());
         Project project = database_helper.getProject(String.valueOf(projectId));
-        TextView title = findViewById(R.id.groupTitle);
+        TextView title = findViewById(R.id.projectName);
         title.setText(project.getTitle());
         TextView description = findViewById(R.id.description);
         description.setText(project.getDescription());
