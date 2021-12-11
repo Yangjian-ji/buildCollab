@@ -3,6 +3,7 @@ package com.example.buildcollab.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,16 +18,17 @@ public class ProfileActivity extends AppCompatActivity {
 
     private ImageButton goback;
     private ImageView qrcode;
+    private Button gochat;
     private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
+        gochat = findViewById(R.id.chat);
         Bundle b = getIntent().getExtras();
         if (b == null) {
-
+            gochat.setVisibility(View.GONE);
         } else {
             userId = b.getInt("id");
             DatabaseHelperUser database_helper = new DatabaseHelperUser(getApplicationContext());
