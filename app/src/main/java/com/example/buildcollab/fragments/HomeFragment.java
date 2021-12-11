@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.buildcollab.R;
 import com.example.buildcollab.activity.GroupProfileActivity;
@@ -21,10 +22,13 @@ import com.example.buildcollab.activity.ProfileActivity;
 import com.example.buildcollab.activity.ProjectProfileActivity;
 import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.DatabaseHelperGroups;
+import com.example.buildcollab.utils.DatabaseHelperUser;
 import com.example.buildcollab.utils.Groups;
 import com.example.buildcollab.utils.MyGroupAdapter;
 import com.example.buildcollab.utils.MyProjectsAdapter;
+import com.example.buildcollab.utils.MyUserAdapter;
 import com.example.buildcollab.utils.Project;
+import com.example.buildcollab.utils.Users;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,8 +40,12 @@ public class HomeFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private ImageView profile;
     private DatabaseHelper database_helper;
+    private DatabaseHelperGroups database_helperGroups;
+    private DatabaseHelperUser databaseHelperUser;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private List<Project> projects;
     private List<Groups> groups;
+    private List<Users> users;
     private ConcatAdapter concatAdapter;
 
     @Nullable
@@ -45,15 +53,19 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View InputFragmentView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        swipeRefreshLayout = InputFragmentView.findViewById(R.id.refresh);
         mRecyclerView = InputFragmentView.findViewById(R.id.reclycleview);
         mRecyclerView.setHasFixedSize(true);
 
         database_helper = new DatabaseHelper(getContext());
+        database_helperGroups = new DatabaseHelperGroups(getContext());
+        databaseHelperUser = new DatabaseHelperUser(getContext());
+        databaseHelperUser.addUser("John Johnson", "Experient with animation");
 
         mLayoutManager = new LinearLayoutManager(InputFragmentView.getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        displayAll();
+        displayAll(false);
 
         profile = InputFragmentView.findViewById(R.id.profile);
 
@@ -64,6 +76,15 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                displayAll(true);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
         return InputFragmentView;
 
     }
@@ -72,30 +93,63 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (mRecyclerView != null) {
-            displayAll();
+            displayAll(false);
             mRecyclerView.invalidate();
         }
     }
 
 
-    private void displayAll() {
+    private void displayAll(boolean refresh) {
+        database_helper = new DatabaseHelper(getContext());
+        database_helperGroups = new DatabaseHelperGroups(getContext());
+        databaseHelperUser = new DatabaseHelperUser(getContext());
+
+        projects = new ArrayList<>(database_helper.getProjects());
+        groups = new ArrayList<>(database_helperGroups.getGroups());
+        users = new ArrayList<>(databaseHelperUser.getUsers());
+
         MyProjectsAdapter myProjectsAdapter = displayProjects();
         MyGroupAdapter myGroupAdapter = displayGroups();
+        MyUserAdapter myUserAdapter = displayUser();
+
+        if (refresh) {
+            Collections.shuffle(projects);
+            Collections.shuffle(groups);
+
+        }
         double t = Math.random();
+
         if (t >= 0.5) {
 
             concatAdapter = new ConcatAdapter(myProjectsAdapter, myGroupAdapter);
+            concatAdapter = new ConcatAdapter(concatAdapter,myUserAdapter);
         } else {
 
             concatAdapter = new ConcatAdapter(myGroupAdapter, myProjectsAdapter);
+
+            concatAdapter = new ConcatAdapter(concatAdapter,myUserAdapter);
         }
         mRecyclerView.setAdapter(concatAdapter);
     }
 
+    private MyUserAdapter displayUser() {
+
+        MyUserAdapter.OnItemClickListener listener = users -> {
+            Intent intent = new Intent(getActivity(), ProfileActivity.class);
+            Bundle b = new Bundle();
+            b.putInt("id", Integer.parseInt(users.getUserId()));
+            intent.putExtras(b);
+            startActivity(intent);
+        };
+
+
+        MyUserAdapter mAdapter = new MyUserAdapter(getContext(), getActivity(), users, listener);
+        return mAdapter;
+    }
+
 
     private MyProjectsAdapter displayProjects() {
-        projects = new ArrayList<>(database_helper.getProjects());
-        Collections.shuffle(projects);
+
         MyProjectsAdapter.OnItemClickListener listener = project -> {
             Intent intent = new Intent(getActivity(), ProjectProfileActivity.class);
             Bundle b = new Bundle();
@@ -108,9 +162,7 @@ public class HomeFragment extends Fragment {
     }
 
     private MyGroupAdapter displayGroups() {
-        DatabaseHelperGroups database_helper = new DatabaseHelperGroups(getContext());
-        groups = new ArrayList<>(database_helper.getGroups());
-        Collections.shuffle(groups);
+
         MyGroupAdapter.OnItemClickListener listener = groups -> {
             Intent intent = new Intent(getActivity(), GroupProfileActivity.class);
             Bundle b = new Bundle();

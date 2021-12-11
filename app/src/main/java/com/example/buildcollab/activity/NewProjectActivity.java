@@ -30,7 +30,7 @@ public class NewProjectActivity extends AppCompatActivity {
             }
             DatabaseHelper database_helper = new DatabaseHelper(getApplicationContext());
             database_helper.addProject(sTitle, sDescription);
-
+            Toast.makeText(this,"Project Created",Toast.LENGTH_LONG).show();
             finish();
         });
 

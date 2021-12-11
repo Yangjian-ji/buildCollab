@@ -31,7 +31,7 @@ public class NewGroupActivity extends AppCompatActivity {
             }
             DatabaseHelperGroups database_helper = new DatabaseHelperGroups(getApplicationContext());
             database_helper.addGroups(sTitle, sDescription);
-
+            Toast.makeText(this, "Group Created", Toast.LENGTH_LONG).show();
             finish();
         });
 

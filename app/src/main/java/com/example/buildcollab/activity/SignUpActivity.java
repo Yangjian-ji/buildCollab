@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.utils.DatabaseHelperUser;
 import com.example.buildcollab.utils.checkInput;
 import com.example.buildcollab.utils.onclick;
 
@@ -57,28 +58,30 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
-
-
-
     }
 
     private void sign_up() {
-      //  if (checkname.isValid() && checkemail.isValid() && checkpassword.isValid()) {
+        //  if (checkname.isValid() && checkemail.isValid() && checkpassword.isValid()) {
 
-            //Verificar se ja existe este email registado e armazenar os dados
-            //TODO
-            if (true) {
-                //Pop up de mensagem e fecha a pagina
-                Toast.makeText(signUpActivity, "Sign up completed", Toast.LENGTH_LONG).show();
-                finish();
+        //Verificar se ja existe este email registado e armazenar os dados
+        //TODO
+        if (true) {
+            //Pop up de mensagem e fecha a pagina
 
-            } else {
-
-                //Pop up de mensagem
-                Toast.makeText(signUpActivity, "Email already registed", Toast.LENGTH_LONG).show();
+            if (name.getText().length() > 0) {
+                DatabaseHelperUser database_helper = new DatabaseHelperUser(getApplicationContext());
+                database_helper.addUser(name.toString()," ");
             }
+            Toast.makeText(signUpActivity, "Sign up completed", Toast.LENGTH_LONG).show();
+            finish();
 
-      //  }
+        } else {
+
+            //Pop up de mensagem
+            Toast.makeText(signUpActivity, "Email already registed", Toast.LENGTH_LONG).show();
+        }
+
+        //  }
 
     }
 

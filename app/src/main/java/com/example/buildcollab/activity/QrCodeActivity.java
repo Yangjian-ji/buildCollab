@@ -39,10 +39,8 @@ public class QrCodeActivity extends AppCompatActivity {
         int smallerDimension = width < height ? width : height;
         smallerDimension = smallerDimension * 3 / 4;
 
-        //TODO A alterar
-        String inputValue = "ApenasTeste";
-
-        QRGEncoder qrgEncoder = new QRGEncoder(inputValue, null, QRGContents.Type.TEXT, smallerDimension);
+        Bundle b = getIntent().getExtras();
+        QRGEncoder qrgEncoder = new QRGEncoder(b.toString(), null, QRGContents.Type.TEXT, smallerDimension);
         try {
             bitmap = qrgEncoder.encodeAsBitmap();
             qrcode.setImageBitmap(bitmap);
