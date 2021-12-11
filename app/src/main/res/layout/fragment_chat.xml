@@ -46,9 +46,16 @@
         android:id="@+id/reclycleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/top">
+        android:layout_below="@+id/top"></androidx.recyclerview.widget.RecyclerView>
 
-
-    </androidx.recyclerview.widget.RecyclerView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="12dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:src="@drawable/ic_add_black_24dp"/>
 
 </RelativeLayout>
