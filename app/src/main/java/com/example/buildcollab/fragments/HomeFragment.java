@@ -60,8 +60,7 @@ public class HomeFragment extends Fragment {
         database_helper = new DatabaseHelper(getContext());
         database_helperGroups = new DatabaseHelperGroups(getContext());
         databaseHelperUser = new DatabaseHelperUser(getContext());
-        databaseHelperUser.addUser("John Johnson", "Experient with animation");
-
+     
         mLayoutManager = new LinearLayoutManager(InputFragmentView.getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

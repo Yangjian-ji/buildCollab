@@ -10,12 +10,13 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.utils.DatabaseHelperUser;
+import com.example.buildcollab.utils.Users;
 import com.example.buildcollab.utils.checkInput;
 import com.example.buildcollab.utils.onclick;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private LoginActivity loginActivity;
     private EditText email, password;
     private Button login;
     private ImageButton goback;
@@ -26,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getItemById();
-        loginActivity = this;
 
         checkemail = new checkInput();
         checkpassword = new checkInput();
@@ -57,9 +57,24 @@ public class LoginActivity extends AppCompatActivity {
 
                 //TODO
 
+                DatabaseHelperUser databaseHelperUser = new DatabaseHelperUser(getApplicationContext());
+                if (!databaseHelperUser.getUsers().isEmpty()) {
+                    boolean exist = false;
+                    for (Users user : databaseHelperUser.getUsers()) {
+                        if (user.getName().equals("John Johnson")) {
+                            exist = true;
+                            break;
+                        }
+                    }
 
-                intent = new Intent(loginActivity, HomeActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    if(!exist)
+                    databaseHelperUser.addUser("John Johnson", "Experient with animation");
+
+                }
+
+                intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                 startActivity(intent);
                 finish();
                 //}
