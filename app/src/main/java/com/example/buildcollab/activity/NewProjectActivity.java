@@ -3,6 +3,7 @@ package com.example.buildcollab.activity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,8 +24,10 @@ public class NewProjectActivity extends AppCompatActivity {
         button.setOnClickListener(v -> {
             String sTitle = title.getText().toString();
             String sDescription = description.getText().toString();
-            if (sTitle.length() < 2 || sDescription.length() < 2)
-                return; //TODO show error
+            if (sTitle.length() < 2 || sDescription.length() < 2) {
+                Toast.makeText(this, "Title/Description is to short", Toast.LENGTH_LONG).show();
+                return;
+            }
             DatabaseHelper database_helper = new DatabaseHelper(getApplicationContext());
             database_helper.addProject(sTitle, sDescription);
 
