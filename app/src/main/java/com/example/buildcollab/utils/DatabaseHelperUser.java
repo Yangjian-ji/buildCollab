@@ -21,7 +21,7 @@ public class DatabaseHelperUser extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query;
-        query = "CREATE TABLE " + TABLE_NAME + "(ID INTEGER PRIMARY KEY, Name TEXT, Email TEXT, Password TEXT)";
+        query = "CREATE TABLE " + TABLE_NAME + "(ID INTEGER PRIMARY KEY, Title TEXT, Description TEXT)";
         db.execSQL(query);
     }
 
@@ -31,41 +31,26 @@ public class DatabaseHelperUser extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addUser(String name, String email, String password) {
+    public void addUser(String name, String description) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("Name", name);
-        values.put("Email", email);
-        values.put("Password", password);
+        values.put("Title", name);
+        values.put("Description", description);
 
         sqLiteDatabase.insert(TABLE_NAME, null, values);
         sqLiteDatabase.close();
     }
 
     public Users getUser(String id) {
+        String select_query = "SELECT * FROM " + TABLE_NAME + " WHERE ID=" + id;
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE ID = ?", new String[]{id});
-        if (cursor.moveToFirst()) {
-            return generateUser(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
-        }
-        return null;
-    }
+        Cursor cursor = db.rawQuery(select_query, null);
 
-    public Users getUserByName(String name) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE Name = ?", new String[]{name});
         if (cursor.moveToFirst()) {
-            Users users = generateUser(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
-            return users;
-        }
-        return null;
-    }
-
-    public Users getUserByEmail(String email) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE Email = ?", new String[]{email});
-        if (cursor.moveToFirst()) {
-            Users users = generateUser(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+            Users users = new Users();
+            users.setUserId(cursor.getString(0));
+            users.setName(cursor.getString(1));
+            users.setDescription(cursor.getString(2));
             return users;
         }
         return null;
@@ -74,12 +59,17 @@ public class DatabaseHelperUser extends SQLiteOpenHelper {
     public ArrayList<Users> getUsers() {
         ArrayList<Users> arrayList = new ArrayList<>();
 
+        String select_query = "SELECT *FROM " + TABLE_NAME;
+
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT *FROM " + TABLE_NAME, null);
+        Cursor cursor = db.rawQuery(select_query, null);
 
         if (cursor.moveToFirst()) {
             do {
-                Users users = generateUser(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+                Users users = new Users();
+                users.setUserId(cursor.getString(0));
+                users.setName(cursor.getString(1));
+                users.setDescription(cursor.getString(2));
                 arrayList.add(users);
             } while (cursor.moveToNext());
         }
@@ -92,22 +82,12 @@ public class DatabaseHelperUser extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
-    public void updateUser(String name, String email, String pass, String ID) {
+    public void updateUser(String name, String des, String ID) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("Name", name);
-        values.put("Email", email);
-        values.put("Password", pass);
+        values.put("Description", des);
         sqLiteDatabase.update(TABLE_NAME, values, "ID=" + ID, null);
         sqLiteDatabase.close();
-    }
-
-    private Users generateUser(String id, String name, String email, String password) {
-        Users users = new Users();
-        users.setUserId(id);
-        users.setName(name);
-        users.setEmail(email);
-        users.setPassword(password);
-        return users;
     }
 }

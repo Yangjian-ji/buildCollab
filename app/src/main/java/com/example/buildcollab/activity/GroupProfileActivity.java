@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.DatabaseHelperGroups;
 import com.example.buildcollab.utils.Groups;
+import com.example.buildcollab.utils.Project;
 
 public class GroupProfileActivity extends AppCompatActivity {
 
