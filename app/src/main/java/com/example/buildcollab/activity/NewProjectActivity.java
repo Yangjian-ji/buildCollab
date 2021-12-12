@@ -1,14 +1,17 @@
 package com.example.buildcollab.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
 import com.example.buildcollab.utils.DatabaseHelper;
+import com.example.buildcollab.utils.onclick;
 
 public class NewProjectActivity extends AppCompatActivity {
 
@@ -17,10 +20,14 @@ public class NewProjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_project);
 
+        ImageButton goback = findViewById(R.id.goback);
+
         EditText title = findViewById(R.id.projectTitle);
         EditText description = findViewById(R.id.projectDescription);
 
+
         Button button = findViewById(R.id.create);
+
         button.setOnClickListener(v -> {
             String sTitle = title.getText().toString();
             String sDescription = description.getText().toString();
@@ -34,6 +41,16 @@ public class NewProjectActivity extends AppCompatActivity {
             finish();
         });
 
+
+        goback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        onclick.buttonEffect(goback);
+        onclick.buttonEffect(button);
     }
 
 }

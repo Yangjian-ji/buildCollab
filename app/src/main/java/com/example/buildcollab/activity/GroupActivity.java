@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.utils.onclick;
 
 public class GroupActivity extends AppCompatActivity {
 
@@ -27,6 +28,8 @@ public class GroupActivity extends AppCompatActivity {
         groupProfile = findViewById(R.id.groupPhoto);
         newPost = findViewById(R.id.newPost);
 
+        onclick.buttonEffect(goback);
+        onclick.buttonEffect(newPost);
 
         goback.setOnClickListener(new View.OnClickListener() {
             @Override

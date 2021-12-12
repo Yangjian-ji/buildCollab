@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".activity.ProfileActivity">
 
     <ScrollView
@@ -34,7 +35,8 @@
                 android:layout_marginTop="50dp"
                 android:src="@drawable/ic_baseline_person_24"
                 app:civ_border_color="#FF000000"
-                app:civ_border_width="0.5dp" />
+                app:civ_border_width="0.5dp"
+                app:civ_circle_background_color="@color/white" />
 
 
             <ImageView
@@ -106,6 +108,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:minHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </RelativeLayout>

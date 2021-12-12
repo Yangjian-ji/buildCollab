@@ -24,6 +24,7 @@ import com.example.buildcollab.utils.DatabaseHelperGroups;
 import com.example.buildcollab.utils.Groups;
 import com.example.buildcollab.utils.MyGroupAdapter;
 import com.example.buildcollab.utils.MyProjectsAdapter;
+import com.example.buildcollab.utils.onclick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,7 @@ public class GroupFragment extends Fragment {
             }
         });
 
+        onclick.buttonEffect(button);
         mRecyclerView = InputFragmentView.findViewById(R.id.reclycleview);
         mRecyclerView.setHasFixedSize(true);
 

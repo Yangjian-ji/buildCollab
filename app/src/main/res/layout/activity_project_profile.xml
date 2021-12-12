@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".activity.ProjectProfileActivity">
 
     <ScrollView
@@ -50,7 +51,8 @@
                 android:minHeight="150dp"
                 android:src="@drawable/ic_baseline_project_24"
                 app:civ_border_color="#FF000000"
-                app:civ_border_width="1dp" />
+                app:civ_border_width="1dp"
+                app:civ_circle_background_color="@color/white" />
 
 
             <Button
@@ -61,6 +63,7 @@
                 android:layout_marginTop="100dp"
                 android:layout_marginEnd="20dp"
                 android:layout_toEndOf="@id/projectPhoto"
+                android:background="@color/buttonColor"
                 android:text="@string/ask_for_invite" />
 
             <TextView
@@ -120,9 +123,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/descriptionText"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="11dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:minHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -146,6 +150,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:minHeight="48dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
@@ -184,6 +189,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:minHeight="48dp"
                 tools:ignore="SpeakableTextPresentCheck" />
         </RelativeLayout>

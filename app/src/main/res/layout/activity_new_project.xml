@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".activity.NewProjectActivity">
 
     <ScrollView
@@ -57,6 +58,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_toEndOf="@id/projectTitleText"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:maxLines="1"
                 android:minHeight="45dp"
                 android:paddingStart="10dp"
@@ -79,12 +81,13 @@
                 android:id="@+id/projectDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="150dp"
                 android:layout_below="@id/projectDescriptionTitle"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
+                android:minHeight="150dp"
                 android:padding="5dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
@@ -104,13 +107,14 @@
                 android:id="@+id/chip1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="40dp"
                 android:layout_below="@id/relatedTagTitle"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
+                android:minHeight="40dp"
 
                 android:paddingStart="20dp"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -136,6 +140,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:padding="10dp"
@@ -160,6 +165,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@id/mgstitle"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:hint="0"
                 android:inputType="number"
                 android:maxLines="1"
@@ -186,6 +192,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/button"
+                android:backgroundTint="@color/buttonColor"
                 android:text="@string/create"
                 android:textAllCaps="false"
                 android:textSize="20sp" />

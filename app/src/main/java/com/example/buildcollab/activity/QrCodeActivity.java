@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.utils.onclick;
 import com.google.zxing.WriterException;
 
 import androidmads.library.qrgenearator.QRGContents;
@@ -48,6 +49,7 @@ public class QrCodeActivity extends AppCompatActivity {
 
         }
 
+        onclick.buttonEffect(goback);
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

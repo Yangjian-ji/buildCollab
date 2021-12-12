@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.utils.onclick;
 
 public class ChatWithJohnActivity extends AppCompatActivity {
 
@@ -35,5 +36,9 @@ public class ChatWithJohnActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        onclick.buttonEffect(goback);
     }
+
+
 }

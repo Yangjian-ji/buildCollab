@@ -18,11 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.buildcollab.R;
 import com.example.buildcollab.activity.NewProjectActivity;
 import com.example.buildcollab.activity.ProfileActivity;
-import com.example.buildcollab.activity.ProjectActivity;
 import com.example.buildcollab.activity.ProjectProfileActivity;
 import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.MyProjectsAdapter;
 import com.example.buildcollab.utils.Project;
+import com.example.buildcollab.utils.onclick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +47,8 @@ public class ProjectFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        onclick.buttonEffect(button);
         mRecyclerView = InputFragmentView.findViewById(R.id.reclycleview);
         mRecyclerView.setHasFixedSize(true);
 

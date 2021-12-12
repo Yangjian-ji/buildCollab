@@ -8,6 +8,7 @@ import android.view.View;
 public class onclick {
     /**
      * Mostrar o efeito do clique do botao
+     *
      * @param button
      */
     public static void buttonEffect(View button) {
@@ -16,7 +17,7 @@ public class onclick {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        v.getBackground().setColorFilter(Color.LTGRAY, PorterDuff.Mode.SRC_ATOP);
+                        v.getBackground().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
                         v.invalidate();
                         break;
                     }

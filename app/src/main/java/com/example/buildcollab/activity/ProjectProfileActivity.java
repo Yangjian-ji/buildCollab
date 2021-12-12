@@ -1,13 +1,15 @@
 package com.example.buildcollab.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
 import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.Project;
+import com.example.buildcollab.utils.onclick;
 
 public class ProjectProfileActivity extends AppCompatActivity {
 
@@ -15,8 +17,10 @@ public class ProjectProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_profile);
+        ImageButton goback = findViewById(R.id.goback);
+        goback.setOnClickListener(v -> finish());
 
-        findViewById(R.id.goback).setOnClickListener(v -> finish());
+        onclick.buttonEffect(goback);
 
         Bundle b = getIntent().getExtras();
         if (b == null)

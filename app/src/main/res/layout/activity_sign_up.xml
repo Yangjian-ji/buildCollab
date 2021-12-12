@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".activity.SignUpActivity">
 
     <ScrollView
@@ -43,6 +44,7 @@
                 android:layout_marginTop="70dp"
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:hint="@string/name"
                 android:paddingStart="10dp" />
 
@@ -56,6 +58,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:hint="@string/email"
                 android:paddingStart="10dp" />
 
@@ -69,6 +72,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:paddingStart="10dp" />
@@ -80,9 +84,10 @@
                 android:layout_below="@+id/password_input"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="50dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="52dp"
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:hint="@string/confirm_password"
                 android:inputType="textPassword"
                 android:paddingStart="10dp" />
@@ -95,6 +100,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginTop="50dp"
                 android:background="@drawable/button"
+                android:backgroundTint="@color/buttonColor"
                 android:text="@string/sign_up" />
 
         </RelativeLayout>

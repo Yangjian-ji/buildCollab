@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".activity.LoginActivity">
 
     <ScrollView
@@ -18,7 +19,8 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="50dp"
+                android:layout_alignTop="@id/Login_text"
+
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/go_back" />
 
@@ -27,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 android:text="@string/login"
                 android:textColor="@color/black"
                 android:textSize="40sp" />
@@ -42,6 +44,7 @@
                 android:layout_marginTop="150dp"
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:hint="@string/email"
                 android:paddingStart="10dp" />
 
@@ -55,6 +58,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:paddingStart="10dp" />
@@ -68,6 +72,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginTop="200dp"
                 android:background="@drawable/button"
+                android:backgroundTint="@color/buttonColor"
                 android:text="@string/login" />
         </RelativeLayout>
 

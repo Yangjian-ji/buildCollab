@@ -14,6 +14,7 @@ import com.example.buildcollab.R;
 import com.example.buildcollab.temp.ChatWithJohnActivity;
 import com.example.buildcollab.utils.DatabaseHelperUser;
 import com.example.buildcollab.utils.Users;
+import com.example.buildcollab.utils.onclick;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -76,5 +77,9 @@ public class ProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        onclick.buttonEffect(goback);
+        onclick.buttonEffect(gochat);
+        onclick.buttonEffect(qrcode);
     }
 }

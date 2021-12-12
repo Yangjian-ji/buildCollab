@@ -10,7 +10,9 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.utils.DatabaseHelperGroups;
 import com.example.buildcollab.utils.DatabaseHelperUser;
+import com.example.buildcollab.utils.Groups;
 import com.example.buildcollab.utils.Users;
 import com.example.buildcollab.utils.checkInput;
 import com.example.buildcollab.utils.onclick;
@@ -69,6 +71,18 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (!exist)
                     databaseHelperUser.addUser("John Johnson", "Experient with animation");
+
+                DatabaseHelperGroups databaseHelperGroups = new DatabaseHelperGroups(getApplicationContext());
+                exist = false;
+                for (Groups group : databaseHelperGroups.getGroups()) {
+                    if (group.getTitle().equals("Fashion World")) {
+                        exist = true;
+                        break;
+                    }
+                }
+
+                if (!exist)
+                    databaseHelperGroups.addGroups("Fashion World", "This is Fashion description");
 
 
                 intent = new Intent(getApplicationContext(), HomeActivity.class);

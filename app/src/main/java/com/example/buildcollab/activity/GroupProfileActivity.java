@@ -1,15 +1,17 @@
 package com.example.buildcollab.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.buildcollab.R;
-import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.DatabaseHelperGroups;
 import com.example.buildcollab.utils.Groups;
-import com.example.buildcollab.utils.Project;
+import com.example.buildcollab.utils.onclick;
 
 public class GroupProfileActivity extends AppCompatActivity {
 
@@ -17,6 +19,7 @@ public class GroupProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_profile);
+        onclick.buttonEffect(findViewById(R.id.goback));
         findViewById(R.id.goback).setOnClickListener(v -> finish());
 
         Bundle b = getIntent().getExtras();
@@ -29,5 +32,19 @@ public class GroupProfileActivity extends AppCompatActivity {
         title.setText(groups.getTitle());
         TextView description = findViewById(R.id.description);
         description.setText(groups.getDescription());
+
+
+        Button askForInvite = findViewById(R.id.askForInvite);
+        onclick.buttonEffect(askForInvite);
+
+        askForInvite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GroupProfileActivity.this, GroupActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
+
 }

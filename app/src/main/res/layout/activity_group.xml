@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".activity.GroupActivity">
 
 
@@ -97,6 +98,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/rectangle"
+                android:backgroundTint="@color/buttonColor"
                 android:text="New Post"
                 android:textSize="20sp" />
         </RelativeLayout>

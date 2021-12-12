@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.utils.onclick;
 
 public class NewPostActivity extends AppCompatActivity {
 
@@ -20,6 +21,9 @@ public class NewPostActivity extends AppCompatActivity {
 
         ImageButton goback = findViewById(R.id.goback);
         Button create = findViewById(R.id.create);
+
+        onclick.buttonEffect(goback);
+        onclick.buttonEffect(create);
 
     goback.setOnClickListener(new View.OnClickListener() {
         @Override

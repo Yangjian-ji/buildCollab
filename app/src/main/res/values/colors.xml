@@ -3,5 +3,11 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="main">#FF9494</color>
+    <color name="bottomNavigationColor">#FFA441</color>
+    <color name="buttonColor">#FFD09D</color>
+    <color name="backgroundColor">#FFEEDC</color>
+    <color name="listColor">#9EFFD1A0</color>
+    <color name="userColor">#60FF8300</color>
+    <color name="projectColor">#51F18400</color>
+    <color name="groupColor">#5CFF8400</color>
 </resources>

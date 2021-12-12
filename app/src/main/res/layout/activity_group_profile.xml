@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".activity.GroupProfileActivity">
 
     <ScrollView
@@ -74,6 +75,7 @@
                 android:layout_marginTop="100dp"
                 android:layout_marginEnd="20dp"
                 android:layout_toEndOf="@id/groupPhoto"
+                android:background="@color/buttonColor"
                 android:text="@string/join" />
 
             <TextView
@@ -136,6 +138,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:minHeight="40dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -159,6 +162,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/input_text"
+                android:backgroundTint="@color/white"
                 android:minHeight="48dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
