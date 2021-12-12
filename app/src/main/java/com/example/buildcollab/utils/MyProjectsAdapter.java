@@ -24,7 +24,7 @@ public class MyProjectsAdapter extends RecyclerView.Adapter<MyProjectsAdapter.vi
     private Context context;
     private Activity activity;
     private List<Project> projects;
-    private DatabaseHelperProjects database_helper;
+    private DatabaseHelper database_helper;
     private OnItemClickListener listener;
 
     public MyProjectsAdapter(Context context, Activity activity, List<Project> projects, OnItemClickListener listener) {
@@ -45,7 +45,7 @@ public class MyProjectsAdapter extends RecyclerView.Adapter<MyProjectsAdapter.vi
         int mLastPosition = holder.getAdapterPosition();
         holder.title.setText(projects.get(mLastPosition).getTitle());
         holder.description.setText(projects.get(mLastPosition).getDescription());
-        database_helper = new DatabaseHelperProjects(context);
+        database_helper = new DatabaseHelper(context);
         holder.bind(projects.get(position), listener);
     }
 
