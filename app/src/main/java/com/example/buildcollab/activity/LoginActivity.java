@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
         checkemail = new checkInput();
         checkpassword = new checkInput();
+
         //Inicia as verificacoes
         checkemail.normalInputVerification(email);
         checkpassword.normalInputVerification(password);
@@ -37,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         //Efeito do clique
         onclick.buttonEffect(goback);
         onclick.buttonEffect(login);
-
 
         //Volta a pagina anterior
         goback.setOnClickListener(new View.OnClickListener() {
@@ -50,34 +51,26 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = null;
-
-                //  if (checkemail.isValid() && checkpassword.isValid()) {
-                //Verificar se existe a conta e a pass ser igual
-
-                //TODO
-
                 DatabaseHelperUser databaseHelperUser = new DatabaseHelperUser(getApplicationContext());
-
-                boolean exist = false;
-                for (Users user : databaseHelperUser.getUsers()) {
-                    if (user.getName().equals("John Johnson")) {
-                        exist = true;
-                        break;
-                    }
+                if (email.getText().toString().length() == 0 || email.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "Invalid input", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Users user = databaseHelperUser.getUserByEmail(email.getText().toString());
+                if (user == null) {
+                    Toast.makeText(getApplicationContext(), "Email not found", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (!user.getPassword().equals(password.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "Wrong password", Toast.LENGTH_LONG).show();
+                    return;
                 }
 
-                if (!exist)
-                    databaseHelperUser.addUser("John Johnson", "Experient with animation");
-
-
-                intent = new Intent(getApplicationContext(), HomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                 startActivity(intent);
                 finish();
-                //}
-
             }
         });
 
@@ -87,7 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         goback = findViewById(R.id.goback_login);
         email = findViewById(R.id.email_input);
         password = findViewById(R.id.password_input);
-
         login = findViewById(R.id.login);
     }
 }

@@ -20,7 +20,7 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.viewHold
     private Context context;
     private Activity activity;
     private List<Groups> groups;
-    private DatabaseHelper database_helper;
+    private DatabaseHelperProjects database_helper;
     private OnItemClickListener listener;
 
     public interface OnItemClickListener {
@@ -47,7 +47,7 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.viewHold
         int mLastPosition = holder.getAdapterPosition();
         holder.title.setText(groups.get(mLastPosition).getTitle());
         holder.description.setText(groups.get(mLastPosition).getDescription());
-        database_helper = new DatabaseHelper(context);
+        database_helper = new DatabaseHelperProjects(context);
         holder.bind(groups.get(position), listener);
 
     }

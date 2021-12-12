@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
 import com.example.buildcollab.utils.DatabaseHelperUser;
+import com.example.buildcollab.utils.Users;
 import com.example.buildcollab.utils.checkInput;
 import com.example.buildcollab.utils.onclick;
 
@@ -61,28 +62,36 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void sign_up() {
-        //  if (checkname.isValid() && checkemail.isValid() && checkpassword.isValid()) {
-
-        //Verificar se ja existe este email registado e armazenar os dados
-        //TODO
-        if (true) {
-            //Pop up de mensagem e fecha a pagina
-
-            if (name.getText().length() > 0) {
-                DatabaseHelperUser database_helper = new DatabaseHelperUser(getApplicationContext());
-                database_helper.addUser(name.toString()," ");
-            }
-            Toast.makeText(signUpActivity, "Sign up completed", Toast.LENGTH_LONG).show();
-            finish();
-
-        } else {
-
-            //Pop up de mensagem
-            Toast.makeText(signUpActivity, "Email already registed", Toast.LENGTH_LONG).show();
+        if (name.getText().toString().length() == 0 || email.getText().toString().length() == 0 || password.getText().toString().length() == 0 || cpassword.getText().toString().length() == 0) {
+            Toast.makeText(getApplicationContext(), "Invalid input", Toast.LENGTH_LONG).show();
+            return;
         }
 
-        //  }
-
+        if (name.getText().length() < 3) {
+            Toast.makeText(getApplicationContext(), "Name is too small", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (email.getText().length() < 3) {
+            Toast.makeText(getApplicationContext(), "Email is too small", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (password.getText().length() < 3) {
+            Toast.makeText(getApplicationContext(), "Password is too small", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (!cpassword.getText().toString().equals(password.getText().toString())) {
+            Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
+            return;
+        }
+        DatabaseHelperUser databaseHelperUser = new DatabaseHelperUser(getApplicationContext());
+        Users user = databaseHelperUser.getUserByEmail(email.getText().toString());
+        if (user != null) {
+            Toast.makeText(getApplicationContext(), "An user already exists with this email", Toast.LENGTH_LONG).show();
+            return;
+        }
+        databaseHelperUser.addUser(name.getText().toString(), email.getText().toString(), password.getText().toString());
+        Toast.makeText(signUpActivity, "Sign up completed", Toast.LENGTH_LONG).show();
+        finish();
     }
 
     private void getItemById() {
