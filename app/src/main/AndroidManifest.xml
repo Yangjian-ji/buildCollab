@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BuildCollab">
         <activity
+            android:name=".temp.ChatWithJohnActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.NewPostActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.GroupActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.ProjectActivity"
             android:exported="true" />
         <activity

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.temp.ChatWithJohnActivity;
 import com.example.buildcollab.utils.DatabaseHelperUser;
 import com.example.buildcollab.utils.Users;
 
@@ -25,7 +26,6 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        gochat = findViewById(R.id.chat);
         Bundle b = getIntent().getExtras();
         if (b == null) {
             gochat.setVisibility(View.GONE);
@@ -42,6 +42,16 @@ public class ProfileActivity extends AppCompatActivity {
 
         goback = findViewById(R.id.goback);
         qrcode = findViewById(R.id.qrcodeimage);
+        gochat = findViewById(R.id.chat);
+
+
+        gochat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, ChatWithJohnActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         qrcode.setOnClickListener(new View.OnClickListener() {

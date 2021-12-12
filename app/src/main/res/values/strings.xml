@@ -38,4 +38,7 @@
     <string name="g">G</string>
     <string name="p">P</string>
     <string name="u">U</string>
+    <string name="new_post">New Post</string>
+    <string name="post_description">Post Description* </string>
+    <string name="post_title">Post Title*</string>
 </resources>

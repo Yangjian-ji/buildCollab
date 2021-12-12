@@ -5,13 +5,11 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:background="@drawable/background"
-    android:padding="10dp"
-    >
+    android:padding="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/identification"
@@ -49,7 +47,7 @@
             android:minWidth="50dp"
             android:minHeight="50dp"
 
-            android:src="@drawable/ic_baseline_group_24"
+            android:src="@drawable/ic_baseline_project_24"
             app:civ_border_color="#FF000000"
             app:civ_border_width="1dp" />
 

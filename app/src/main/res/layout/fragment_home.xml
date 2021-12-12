@@ -35,9 +35,9 @@
             android:backgroundTint="@color/white"
             android:drawableStart="@drawable/ic_baseline_search_24"
             android:hint="@string/search"
-            android:singleLine="true"
             android:imeOptions="actionSearch"
-            android:paddingStart="15dp" />
+            android:paddingStart="15dp"
+            android:singleLine="true" />
 
         <ImageView
             android:id="@+id/profile"
