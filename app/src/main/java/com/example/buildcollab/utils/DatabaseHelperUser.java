@@ -31,7 +31,7 @@ public class DatabaseHelperUser extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addUser(String name,String description) {
+    public void addUser(String name, String description) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("Title", name);

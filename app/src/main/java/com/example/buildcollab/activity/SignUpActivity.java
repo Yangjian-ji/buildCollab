@@ -70,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             if (name.getText().length() > 0) {
                 DatabaseHelperUser database_helper = new DatabaseHelperUser(getApplicationContext());
-                database_helper.addUser(name.toString()," ");
+                database_helper.addUser(name.toString(), " ");
             }
             Toast.makeText(signUpActivity, "Sign up completed", Toast.LENGTH_LONG).show();
             finish();
