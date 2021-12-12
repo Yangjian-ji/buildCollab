@@ -58,19 +58,18 @@ public class LoginActivity extends AppCompatActivity {
                 //TODO
 
                 DatabaseHelperUser databaseHelperUser = new DatabaseHelperUser(getApplicationContext());
-                if (!databaseHelperUser.getUsers().isEmpty()) {
-                    boolean exist = false;
-                    for (Users user : databaseHelperUser.getUsers()) {
-                        if (user.getName().equals("John Johnson")) {
-                            exist = true;
-                            break;
-                        }
-                    }
 
-                    if(!exist)
+                boolean exist = false;
+                for (Users user : databaseHelperUser.getUsers()) {
+                    if (user.getName().equals("John Johnson")) {
+                        exist = true;
+                        break;
+                    }
+                }
+
+                if (!exist)
                     databaseHelperUser.addUser("John Johnson", "Experient with animation");
 
-                }
 
                 intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

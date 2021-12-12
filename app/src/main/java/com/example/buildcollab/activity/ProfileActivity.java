@@ -27,6 +27,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Bundle b = getIntent().getExtras();
+
+        gochat = findViewById(R.id.chat);
         if (b == null) {
             gochat.setVisibility(View.GONE);
         } else {
@@ -42,7 +44,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         goback = findViewById(R.id.goback);
         qrcode = findViewById(R.id.qrcodeimage);
-        gochat = findViewById(R.id.chat);
 
 
         gochat.setOnClickListener(new View.OnClickListener() {
