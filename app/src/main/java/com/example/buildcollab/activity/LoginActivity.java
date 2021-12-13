@@ -12,9 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
 import com.example.buildcollab.utils.DatabaseHelper;
-import com.example.buildcollab.utils.DatabaseHelper;
-import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.Groups;
+import com.example.buildcollab.utils.Project;
 import com.example.buildcollab.utils.Users;
 import com.example.buildcollab.utils.checkInput;
 import com.example.buildcollab.utils.onclick;
@@ -69,6 +68,35 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
+                //A eliminar no futuro-------------------------------------------------------------------
+
+
+                if (DatabaseHelper.getUserByName("John Johnson") == null)
+                    DatabaseHelper.addUser("John Johnson", "john.com", "john");
+
+                boolean exist = false;
+                for (Groups group : DatabaseHelper.getGroups()) {
+                    if (group.getTitle().equals("Fashion World")) {
+                        exist = true;
+                        break;
+                    }
+                }
+
+                if (!exist)
+                    DatabaseHelper.addGroups("Fashion World", "This is Fashion description");
+
+
+                exist = false;
+
+                for (Project project : DatabaseHelper.getProjects()) {
+                    if (project.getTitle().equals("Game Developer")) {
+                        exist = true;
+                        break;
+                    }
+                }
+                if (!exist)
+                    DatabaseHelper.addProject("Game Developer", "We want create a game");
+                //Fim --------------------------------------------------------------------
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 Bundle b = new Bundle();

@@ -38,7 +38,7 @@
             android:layout_toEndOf="@id/identification"
             android:text="@string/name"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <de.hdodenhof.circleimageview.CircleImageView
