@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.activity.HomeActivity;
 
 import java.util.List;
 
@@ -20,8 +21,9 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.viewHold
     private Context context;
     private Activity activity;
     private List<Groups> groups;
-    private DatabaseHelperProjects database_helper;
+    private DatabaseHelper database_helper;
     private OnItemClickListener listener;
+    private boolean belong;
 
     public interface OnItemClickListener {
         void onItemClick(Groups groups);
@@ -32,13 +34,22 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.viewHold
         this.activity = activity;
         this.groups = groups;
         this.listener = listener;
+        this.belong = belong;
+    }
 
+    @Override
+    public int getItemViewType(int position) {
+        database_helper = new DatabaseHelper(context);
+        return database_helper.isUserInGroup(HomeActivity.getUserId(), groups.get(position).getGroupId()) ? 1 : 0;
     }
 
     @NonNull
     public viewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
-        View view = LayoutInflater.from(context).inflate(R.layout.group_item, viewGroup, false);
+        View view = null;
+        if (i == 0)
+            view = LayoutInflater.from(context).inflate(R.layout.group_item, viewGroup, false);
+        else
+            view = LayoutInflater.from(context).inflate(R.layout.group_item_belong, viewGroup, false);
         return new viewHolder(view);
     }
 
@@ -47,9 +58,8 @@ public class MyGroupAdapter extends RecyclerView.Adapter<MyGroupAdapter.viewHold
         int mLastPosition = holder.getAdapterPosition();
         holder.title.setText(groups.get(mLastPosition).getTitle());
         holder.description.setText(groups.get(mLastPosition).getDescription());
-        database_helper = new DatabaseHelperProjects(context);
+        database_helper = new DatabaseHelper(context);
         holder.bind(groups.get(position), listener);
-
     }
 
     @Override

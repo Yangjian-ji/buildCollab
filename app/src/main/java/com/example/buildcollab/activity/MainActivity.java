@@ -44,7 +44,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(mainActivity, SignUpActivity.class);
                 startActivity(intent);
-
+                //TODO comment above and uncomment below for bypassing login
+                //Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                //Bundle b = new Bundle();
+                //b.putInt("userId", Integer.parseInt("1"));
+                //intent.putExtras(b);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //startActivity(intent);
             }
 
         });

@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
-import com.example.buildcollab.utils.DatabaseHelperGroups;
+import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.onclick;
 
 public class NewGroupActivity extends AppCompatActivity {
@@ -46,8 +46,9 @@ public class NewGroupActivity extends AppCompatActivity {
                 Toast.makeText(this, "Title/Description is to short", Toast.LENGTH_LONG).show();
                 return;
             }
-            DatabaseHelperGroups database_helper = new DatabaseHelperGroups(getApplicationContext());
-            database_helper.addGroups(sTitle, sDescription);
+            DatabaseHelper database_helper = new DatabaseHelper(getApplicationContext());
+            String groupId = database_helper.addGroups(sTitle, sDescription);
+            database_helper.addUserToGroup(HomeActivity.getUserId(), groupId);
             Toast.makeText(this, "Group Created", Toast.LENGTH_LONG).show();
             finish();
         });

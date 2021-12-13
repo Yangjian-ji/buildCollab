@@ -2,6 +2,8 @@ package com.example.buildcollab.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +21,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.activity.GroupActivity;
 import com.example.buildcollab.activity.GroupProfileActivity;
+import com.example.buildcollab.activity.HomeActivity;
 import com.example.buildcollab.activity.ProfileActivity;
+import com.example.buildcollab.activity.ProjectActivity;
 import com.example.buildcollab.activity.ProjectProfileActivity;
-import com.example.buildcollab.utils.DatabaseHelperProjects;
-import com.example.buildcollab.utils.DatabaseHelperGroups;
-import com.example.buildcollab.utils.DatabaseHelperUser;
+import com.example.buildcollab.utils.DatabaseHelper;
+import com.example.buildcollab.utils.DatabaseHelper;
+import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.Groups;
 import com.example.buildcollab.utils.MyGroupAdapter;
 import com.example.buildcollab.utils.MyProjectsAdapter;
@@ -42,9 +47,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private ImageView profile;
     private EditText search;
-    private DatabaseHelperProjects database_helper;
-    private DatabaseHelperGroups database_helperGroups;
-    private DatabaseHelperUser databaseHelperUser;
+    private DatabaseHelper database_helper;
     private SwipeRefreshLayout swipeRefreshLayout;
     private List<Project> projects;
     private List<Groups> groups;
@@ -61,9 +64,7 @@ public class HomeFragment extends Fragment {
         mRecyclerView = InputFragmentView.findViewById(R.id.reclycleview);
         mRecyclerView.setHasFixedSize(true);
 
-        database_helper = new DatabaseHelperProjects(getContext());
-        database_helperGroups = new DatabaseHelperGroups(getContext());
-        databaseHelperUser = new DatabaseHelperUser(getContext());
+        database_helper = new DatabaseHelper(getContext());
 
         mLayoutManager = new LinearLayoutManager(InputFragmentView.getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -89,18 +90,24 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        search.setOnKeyListener(new View.OnKeyListener() {
+        search.addTextChangedListener(new TextWatcher() {
+
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+            public void afterTextChanged(Editable s) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if (s.length() != 0)
                     displayAll(true, search.getText().toString());
-                    return true;
-                }
-                return false;
             }
         });
-
 
         return InputFragmentView;
 
@@ -117,16 +124,13 @@ public class HomeFragment extends Fragment {
 
 
     private void displayAll(boolean refresh, String filter) {
-        database_helper = new DatabaseHelperProjects(getContext());
-        database_helperGroups = new DatabaseHelperGroups(getContext());
-        databaseHelperUser = new DatabaseHelperUser(getContext());
         if (filter != null) {
             projects = new ArrayList<>();
             groups = new ArrayList<>();
             users = new ArrayList<>();
             List<Project> tmpproject = new ArrayList<>(database_helper.getProjects());
-            List<Groups> tmpgroups = new ArrayList<>(database_helperGroups.getGroups());
-            List<Users> tmpusers = new ArrayList<>(databaseHelperUser.getUsers());
+            List<Groups> tmpgroups = new ArrayList<>(database_helper.getGroups());
+            List<Users> tmpusers = new ArrayList<>(database_helper.getUsers());
 
 
             for (Project project : tmpproject) {
@@ -146,8 +150,8 @@ public class HomeFragment extends Fragment {
             }
         } else {
             projects = new ArrayList<>(database_helper.getProjects());
-            groups = new ArrayList<>(database_helperGroups.getGroups());
-            users = new ArrayList<>(databaseHelperUser.getUsers());
+            groups = new ArrayList<>(database_helper.getGroups());
+            users = new ArrayList<>(database_helper.getUsers());
         }
 
 
@@ -193,7 +197,11 @@ public class HomeFragment extends Fragment {
     private MyProjectsAdapter displayProjects() {
 
         MyProjectsAdapter.OnItemClickListener listener = project -> {
-            Intent intent = new Intent(getActivity(), ProjectProfileActivity.class);
+            Intent intent;
+            if (database_helper.isUserInProject(HomeActivity.getUserId(), project.getProjectId()))
+                intent = new Intent(getActivity(), ProjectActivity.class);
+            else
+                intent = new Intent(getActivity(), ProjectProfileActivity.class);
             Bundle b = new Bundle();
             b.putInt("id", Integer.parseInt(project.getProjectId()));
             intent.putExtras(b);
@@ -206,13 +214,16 @@ public class HomeFragment extends Fragment {
     private MyGroupAdapter displayGroups() {
 
         MyGroupAdapter.OnItemClickListener listener = groups -> {
-            Intent intent = new Intent(getActivity(), GroupProfileActivity.class);
+            Intent intent;
+            if (database_helper.isUserInGroup(HomeActivity.getUserId(), groups.getGroupId()))
+                intent = new Intent(getActivity(), GroupActivity.class);
+            else
+                intent = new Intent(getActivity(), GroupProfileActivity.class);
             Bundle b = new Bundle();
             b.putInt("id", Integer.parseInt(groups.getGroupId()));
             intent.putExtras(b);
             startActivity(intent);
         };
-
 
         MyGroupAdapter mAdapter = new MyGroupAdapter(getContext(), getActivity(), groups, listener);
         return mAdapter;

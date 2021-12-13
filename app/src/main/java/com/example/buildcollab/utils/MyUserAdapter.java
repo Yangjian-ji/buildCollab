@@ -19,7 +19,7 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.viewHolder
     private Context context;
     private Activity activity;
     private List<Users> users;
-    private DatabaseHelperUser database_helper;
+    private DatabaseHelper database_helper;
     private OnItemClickListener listener;
 
     public interface OnItemClickListener {
@@ -46,7 +46,7 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.viewHolder
         int mLastPosition = holder.getAdapterPosition();
         holder.name.setText(users.get(mLastPosition).getName());
         holder.description.setText(users.get(mLastPosition).getDescription());
-        database_helper = new DatabaseHelperUser(context);
+        database_helper = new DatabaseHelper(context);
         holder.bind(users.get(position), listener);
 
     }

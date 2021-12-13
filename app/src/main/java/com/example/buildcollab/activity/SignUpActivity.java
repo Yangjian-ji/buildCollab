@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
-import com.example.buildcollab.utils.DatabaseHelperUser;
+import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.Users;
 import com.example.buildcollab.utils.checkInput;
 import com.example.buildcollab.utils.onclick;
@@ -80,13 +80,13 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
             return;
         }
-        DatabaseHelperUser databaseHelperUser = new DatabaseHelperUser(getApplicationContext());
-        Users user = databaseHelperUser.getUserByEmail(email.getText().toString());
+        DatabaseHelper DatabaseHelper = new DatabaseHelper(getApplicationContext());
+        Users user = DatabaseHelper.getUserByEmail(email.getText().toString());
         if (user != null) {
             Toast.makeText(getApplicationContext(), "An user already exists with this email", Toast.LENGTH_LONG).show();
             return;
         }
-        databaseHelperUser.addUser(name.getText().toString(), email.getText().toString(), password.getText().toString());
+        DatabaseHelper.addUser(name.getText().toString(), email.getText().toString(), password.getText().toString());
         Toast.makeText(signUpActivity, "Sign up completed", Toast.LENGTH_LONG).show();
         finish();
     }

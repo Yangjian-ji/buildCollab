@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,24 +17,24 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.activity.GroupActivity;
 import com.example.buildcollab.activity.GroupProfileActivity;
+import com.example.buildcollab.activity.HomeActivity;
 import com.example.buildcollab.activity.NewGroupActivity;
 import com.example.buildcollab.activity.ProfileActivity;
-import com.example.buildcollab.activity.ProjectActivity;
-import com.example.buildcollab.utils.DatabaseHelperGroups;
+import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.Groups;
 import com.example.buildcollab.utils.MyGroupAdapter;
-import com.example.buildcollab.utils.MyProjectsAdapter;
 import com.example.buildcollab.utils.onclick;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GroupFragment extends Fragment {
     private RecyclerView mRecyclerView;
+    private TextView emptyView;
     private RecyclerView.Adapter mAdapter;
     private ImageView profile;
-    private DatabaseHelperGroups database_helper;
+    private DatabaseHelper database_helper;
     private List<Groups> groups;
 
     @Nullable
@@ -51,9 +52,10 @@ public class GroupFragment extends Fragment {
 
         onclick.buttonEffect(button);
         mRecyclerView = InputFragmentView.findViewById(R.id.reclycleview);
+        emptyView = InputFragmentView.findViewById(R.id.emptyMessage);
         mRecyclerView.setHasFixedSize(true);
 
-        database_helper = new DatabaseHelperGroups(getContext());
+        database_helper = new DatabaseHelper(getContext());
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(InputFragmentView.getContext()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -69,15 +71,24 @@ public class GroupFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
         return InputFragmentView;
     }
 
     private void displayGroups() {
-        groups = new ArrayList<>(database_helper.getGroups());
+        groups = database_helper.getGroupsBelong(HomeActivity.getUserId());
+        if (groups.isEmpty()) {
+            mRecyclerView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        } else {
+            mRecyclerView.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+        }
         MyGroupAdapter.OnItemClickListener listener = groups -> {
-            Intent intent = new Intent(getActivity(), GroupProfileActivity.class);
+            Intent intent;
+            if (database_helper.isUserInGroup(HomeActivity.getUserId(), groups.getGroupId()))
+                intent = new Intent(getActivity(), GroupActivity.class);
+            else
+                intent = new Intent(getActivity(), GroupProfileActivity.class);
             Bundle b = new Bundle();
             b.putInt("id", Integer.parseInt(groups.getGroupId()));
             intent.putExtras(b);

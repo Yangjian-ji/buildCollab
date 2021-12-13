@@ -11,8 +11,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
-import com.example.buildcollab.utils.DatabaseHelperGroups;
-import com.example.buildcollab.utils.DatabaseHelperUser;
+import com.example.buildcollab.utils.DatabaseHelper;
+import com.example.buildcollab.utils.DatabaseHelper;
+import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.Groups;
 import com.example.buildcollab.utils.Users;
 import com.example.buildcollab.utils.checkInput;
@@ -53,12 +54,12 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseHelperUser databaseHelperUser = new DatabaseHelperUser(getApplicationContext());
+                DatabaseHelper DatabaseHelper = new DatabaseHelper(getApplicationContext());
                 if (email.getText().toString().length() == 0 || email.getText().toString().length() == 0) {
                     Toast.makeText(getApplicationContext(), "Invalid input", Toast.LENGTH_LONG).show();
                     return;
                 }
-                Users user = databaseHelperUser.getUserByEmail(email.getText().toString());
+                Users user = DatabaseHelper.getUserByEmail(email.getText().toString());
                 if (user == null) {
                     Toast.makeText(getApplicationContext(), "Email not found", Toast.LENGTH_LONG).show();
                     return;
@@ -70,6 +71,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                Bundle b = new Bundle();
+                b.putInt("userId", Integer.parseInt(user.getUserId()));
+                intent.putExtras(b);
 
                 startActivity(intent);
                 finish();

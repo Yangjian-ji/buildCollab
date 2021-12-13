@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
-import com.example.buildcollab.utils.DatabaseHelperGroups;
+import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.Groups;
 import com.example.buildcollab.utils.onclick;
 
@@ -26,7 +26,7 @@ public class GroupProfileActivity extends AppCompatActivity {
         if (b == null)
             finish();
         int groupId = b.getInt("id");
-        DatabaseHelperGroups database_helper = new DatabaseHelperGroups(getApplicationContext());
+        DatabaseHelper database_helper = new DatabaseHelper(getApplicationContext());
         Groups groups = database_helper.getGroup(String.valueOf(groupId));
         TextView title = findViewById(R.id.groupName);
         title.setText(groups.getTitle());
@@ -40,6 +40,7 @@ public class GroupProfileActivity extends AppCompatActivity {
         askForInvite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                database_helper.addUserToGroup(HomeActivity.getUserId(), String.valueOf(groupId));
                 Intent intent = new Intent(GroupProfileActivity.this, GroupActivity.class);
                 startActivity(intent);
 

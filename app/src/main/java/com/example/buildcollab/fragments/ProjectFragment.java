@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,10 +17,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.activity.GroupActivity;
+import com.example.buildcollab.activity.GroupProfileActivity;
+import com.example.buildcollab.activity.HomeActivity;
 import com.example.buildcollab.activity.NewProjectActivity;
 import com.example.buildcollab.activity.ProfileActivity;
+import com.example.buildcollab.activity.ProjectActivity;
 import com.example.buildcollab.activity.ProjectProfileActivity;
-import com.example.buildcollab.utils.DatabaseHelperProjects;
+import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.MyProjectsAdapter;
 import com.example.buildcollab.utils.Project;
 import com.example.buildcollab.utils.onclick;
@@ -30,8 +35,9 @@ import java.util.List;
 public class ProjectFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
+    private TextView emptyView;
     private ImageView profile;
-    private DatabaseHelperProjects database_helper;
+    private DatabaseHelper database_helper;
     private List<Project> projects;
 
     @Nullable
@@ -50,9 +56,10 @@ public class ProjectFragment extends Fragment {
 
         onclick.buttonEffect(button);
         mRecyclerView = InputFragmentView.findViewById(R.id.reclycleview);
+        emptyView = InputFragmentView.findViewById(R.id.emptyMessage);
         mRecyclerView.setHasFixedSize(true);
 
-        database_helper = new DatabaseHelperProjects(getContext());
+        database_helper = new DatabaseHelper(getContext());
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(InputFragmentView.getContext()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -77,9 +84,20 @@ public class ProjectFragment extends Fragment {
     }
 
     private void displayProjects() {
-        projects = new ArrayList<>(database_helper.getProjects());
+        projects = new ArrayList<>(database_helper.getProjects(HomeActivity.getUserId()));
+        if (projects.isEmpty()) {
+            mRecyclerView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        } else {
+            mRecyclerView.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+        }
         MyProjectsAdapter.OnItemClickListener listener = project -> {
-            Intent intent = new Intent(getActivity(), ProjectProfileActivity.class);
+            Intent intent;
+            if (database_helper.isUserInProject(HomeActivity.getUserId(), project.getProjectId()))
+                intent = new Intent(getActivity(), ProjectActivity.class);
+            else
+                intent = new Intent(getActivity(), ProjectProfileActivity.class);
             Bundle b = new Bundle();
             b.putInt("id", Integer.parseInt(project.getProjectId()));
             intent.putExtras(b);

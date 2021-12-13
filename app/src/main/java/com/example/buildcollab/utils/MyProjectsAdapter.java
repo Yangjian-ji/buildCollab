@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.activity.HomeActivity;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class MyProjectsAdapter extends RecyclerView.Adapter<MyProjectsAdapter.vi
     private Context context;
     private Activity activity;
     private List<Project> projects;
-    private DatabaseHelperProjects database_helper;
+    private DatabaseHelper database_helper;
     private OnItemClickListener listener;
 
     public MyProjectsAdapter(Context context, Activity activity, List<Project> projects, OnItemClickListener listener) {
@@ -35,8 +36,18 @@ public class MyProjectsAdapter extends RecyclerView.Adapter<MyProjectsAdapter.vi
     }
 
     @Override
+    public int getItemViewType(int position) {
+        database_helper = new DatabaseHelper(context);
+        return database_helper.isUserInProject(HomeActivity.getUserId(), projects.get(position).getProjectId()) ? 1 : 0;
+    }
+
+    @Override
     public MyProjectsAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.project_item, viewGroup, false);
+        View view = null;
+        if (i == 0)
+            view = LayoutInflater.from(context).inflate(R.layout.project_item, viewGroup, false);
+        else
+            view = LayoutInflater.from(context).inflate(R.layout.project_item_belong, viewGroup, false);
         return new viewHolder(view);
     }
 
@@ -45,7 +56,7 @@ public class MyProjectsAdapter extends RecyclerView.Adapter<MyProjectsAdapter.vi
         int mLastPosition = holder.getAdapterPosition();
         holder.title.setText(projects.get(mLastPosition).getTitle());
         holder.description.setText(projects.get(mLastPosition).getDescription());
-        database_helper = new DatabaseHelperProjects(context);
+        database_helper = new DatabaseHelper(context);
         holder.bind(projects.get(position), listener);
     }
 

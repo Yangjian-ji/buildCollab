@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
 import com.example.buildcollab.temp.ChatWithJohnActivity;
-import com.example.buildcollab.utils.DatabaseHelperUser;
+import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.Users;
 import com.example.buildcollab.utils.onclick;
 
@@ -34,7 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
             gochat.setVisibility(View.GONE);
         } else {
             userId = b.getInt("id");
-            DatabaseHelperUser database_helper = new DatabaseHelperUser(getApplicationContext());
+            DatabaseHelper database_helper = new DatabaseHelper(getApplicationContext());
             Users users = database_helper.getUser(String.valueOf(userId));
             TextView name = findViewById(R.id.userName);
             name.setText(users.getName());

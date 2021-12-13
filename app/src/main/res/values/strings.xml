@@ -7,8 +7,8 @@
     <string name="confirm_password">Confirm-Password</string>
     <string name="login">Login</string>
     <string name="home">Home</string>
-    <string name="my_group">MyGroup</string>
-    <string name="my_project">MyProject</string>
+    <string name="my_group">MyGroups</string>
+    <string name="my_project">MyProjects</string>
     <string name="chat">Chat</string>
     <string name="search">Search</string>
     <string name="filter_group">Filter Groups</string>

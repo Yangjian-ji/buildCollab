@@ -12,15 +12,23 @@ import com.example.buildcollab.fragments.ChatFragment;
 import com.example.buildcollab.fragments.GroupFragment;
 import com.example.buildcollab.fragments.HomeFragment;
 import com.example.buildcollab.fragments.ProjectFragment;
+import com.example.buildcollab.utils.DatabaseHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private static String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Bundle b = getIntent().getExtras();
+        if (b == null)
+            finish();
+        userId = String.valueOf(b.getInt("userId"));
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
@@ -29,8 +37,6 @@ public class HomeActivity extends AppCompatActivity {
         bottomNav.setSelectedItemId(R.id.nav_home);
 
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-
-
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment = null;
@@ -58,6 +64,10 @@ public class HomeActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    public static String getUserId() {
+        return userId;
     }
 
 

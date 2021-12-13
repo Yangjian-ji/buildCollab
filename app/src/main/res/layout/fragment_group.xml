@@ -71,4 +71,14 @@
         android:scrollbarSize="10dp"
         android:scrollbars="vertical" />
 
+    <TextView
+        android:id="@+id/emptyMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:alpha="0.3"
+        android:layout_centerInParent="true"
+        android:text="You do not belong to any group!"
+        android:textColor="#000000" />
+
 </RelativeLayout>
