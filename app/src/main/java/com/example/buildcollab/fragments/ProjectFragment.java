@@ -19,7 +19,7 @@ import com.example.buildcollab.R;
 import com.example.buildcollab.activity.NewProjectActivity;
 import com.example.buildcollab.activity.ProfileActivity;
 import com.example.buildcollab.activity.ProjectProfileActivity;
-import com.example.buildcollab.utils.DatabaseHelper;
+import com.example.buildcollab.utils.DatabaseHelperProjects;
 import com.example.buildcollab.utils.MyProjectsAdapter;
 import com.example.buildcollab.utils.Project;
 import com.example.buildcollab.utils.onclick;
@@ -31,7 +31,7 @@ public class ProjectFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private ImageView profile;
-    private DatabaseHelper database_helper;
+    private DatabaseHelperProjects database_helper;
     private List<Project> projects;
 
     @Nullable
@@ -52,7 +52,7 @@ public class ProjectFragment extends Fragment {
         mRecyclerView = InputFragmentView.findViewById(R.id.reclycleview);
         mRecyclerView.setHasFixedSize(true);
 
-        database_helper = new DatabaseHelper(getContext());
+        database_helper = new DatabaseHelperProjects(getContext());
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(InputFragmentView.getContext()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
