@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
-import com.example.buildcollab.utils.DatabaseHelper;
+import com.example.buildcollab.utils.DatabaseHelperProjects;
 import com.example.buildcollab.utils.onclick;
 
 public class NewProjectActivity extends AppCompatActivity {
@@ -35,7 +35,7 @@ public class NewProjectActivity extends AppCompatActivity {
                 Toast.makeText(this, "Title/Description is to short", Toast.LENGTH_LONG).show();
                 return;
             }
-            DatabaseHelper database_helper = new DatabaseHelper(getApplicationContext());
+            DatabaseHelperProjects database_helper = new DatabaseHelperProjects(getApplicationContext());
             database_helper.addProject(sTitle, sDescription);
             Toast.makeText(this,"Project Created",Toast.LENGTH_LONG).show();
             finish();

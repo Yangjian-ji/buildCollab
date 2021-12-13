@@ -22,7 +22,7 @@ import com.example.buildcollab.R;
 import com.example.buildcollab.activity.GroupProfileActivity;
 import com.example.buildcollab.activity.ProfileActivity;
 import com.example.buildcollab.activity.ProjectProfileActivity;
-import com.example.buildcollab.utils.DatabaseHelper;
+import com.example.buildcollab.utils.DatabaseHelperProjects;
 import com.example.buildcollab.utils.DatabaseHelperGroups;
 import com.example.buildcollab.utils.DatabaseHelperUser;
 import com.example.buildcollab.utils.Groups;
@@ -35,7 +35,6 @@ import com.example.buildcollab.utils.Users;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 public class HomeFragment extends Fragment {
     private RecyclerView mRecyclerView;
@@ -43,7 +42,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private ImageView profile;
     private EditText search;
-    private DatabaseHelper database_helper;
+    private DatabaseHelperProjects database_helper;
     private DatabaseHelperGroups database_helperGroups;
     private DatabaseHelperUser databaseHelperUser;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -62,7 +61,7 @@ public class HomeFragment extends Fragment {
         mRecyclerView = InputFragmentView.findViewById(R.id.reclycleview);
         mRecyclerView.setHasFixedSize(true);
 
-        database_helper = new DatabaseHelper(getContext());
+        database_helper = new DatabaseHelperProjects(getContext());
         database_helperGroups = new DatabaseHelperGroups(getContext());
         databaseHelperUser = new DatabaseHelperUser(getContext());
 
@@ -118,7 +117,7 @@ public class HomeFragment extends Fragment {
 
 
     private void displayAll(boolean refresh, String filter) {
-        database_helper = new DatabaseHelper(getContext());
+        database_helper = new DatabaseHelperProjects(getContext());
         database_helperGroups = new DatabaseHelperGroups(getContext());
         databaseHelperUser = new DatabaseHelperUser(getContext());
         if (filter != null) {
