@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildcollab.R;
-import com.example.buildcollab.utils.DatabaseHelper;
+import com.example.buildcollab.utils.DatabaseHelperProjects;
 import com.example.buildcollab.utils.Project;
 import com.example.buildcollab.utils.onclick;
 
@@ -28,7 +28,7 @@ public class ProjectActivity extends AppCompatActivity {
         if (b == null)
             finish();
         int projectId = b.getInt("id");
-        DatabaseHelper database_helper = new DatabaseHelper(getApplicationContext());
+        DatabaseHelperProjects database_helper = new DatabaseHelperProjects(getApplicationContext());
         Project project = database_helper.getProject(String.valueOf(projectId));
         TextView title = findViewById(R.id.projectName);
         title.setText(project.getTitle());
