@@ -87,6 +87,9 @@ public class GroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GroupActivity.this, GroupProfileActivity.class);
+                Bundle b = new Bundle();
+                b.putInt("id", Integer.parseInt(groupId));
+                intent.putExtras(b);
                 startActivity(intent);
             }
         });
@@ -106,7 +109,7 @@ public class GroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 database_helper.removeUserGroup(HomeActivity.getUserId(), groupId);
-                finish(); //TODO a transição não é smooth
+                finish();
             }
         });
 
