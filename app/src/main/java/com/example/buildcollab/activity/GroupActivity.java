@@ -27,6 +27,7 @@ public class GroupActivity extends AppCompatActivity {
     private ImageButton goback;
     private ImageView groupProfile;
     private Button newPost;
+    private Button invite;
     private RecyclerView mRecyclerView;
     private DatabaseHelper database_helper;
     private TextView emptyView;
@@ -45,6 +46,7 @@ public class GroupActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.reclycleview);
         emptyView = findViewById(R.id.emptyMessage);
         groupTitle = findViewById(R.id.groupName);
+        invite = findViewById(R.id.invite);
 
 
         database_helper = new DatabaseHelper(getApplicationContext());
@@ -54,6 +56,7 @@ public class GroupActivity extends AppCompatActivity {
 
         onclick.buttonEffect(goback);
         onclick.buttonEffect(newPost);
+        onclick.buttonEffect(invite);
 
         Bundle b = getIntent().getExtras();
         if (b == null)
@@ -70,7 +73,6 @@ public class GroupActivity extends AppCompatActivity {
                 finish();
             }
         });
-
 
         groupProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,8 +95,6 @@ public class GroupActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 
     private void displayPosts() {
@@ -108,6 +108,7 @@ public class GroupActivity extends AppCompatActivity {
         }
         GroupPostsAdapter.OnItemClickListener listener = post -> {
             System.out.println(post); //TODO create activity to see full post
+
 //            Intent intent;
 //            if (database_helper.isUserInGroup(HomeActivity.getUserId(), groups.getGroupId()))
 //                intent = new Intent(getActivity(), GroupActivity.class);
