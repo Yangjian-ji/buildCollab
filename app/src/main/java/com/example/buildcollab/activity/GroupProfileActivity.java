@@ -69,6 +69,7 @@ public class GroupProfileActivity extends AppCompatActivity {
         askForInvite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Requested to join group", Toast.LENGTH_LONG).show();
                 database_helper.addUserToGroup(HomeActivity.getUserId(), String.valueOf(groupId));
                 Intent intent = new Intent(GroupProfileActivity.this, GroupActivity.class);
                 Bundle b = new Bundle();
