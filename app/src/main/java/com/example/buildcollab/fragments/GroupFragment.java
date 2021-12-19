@@ -88,7 +88,10 @@ public class GroupFragment extends Fragment {
         }
         MyGroupAdapter.OnItemClickListener listener = groups -> {
             Intent intent;
-            intent = new Intent(getActivity(), GroupProfileActivity.class);
+            if (database_helper.isUserInGroup(HomeActivity.getUserId(), groups.getGroupId()))
+                intent = new Intent(getActivity(), GroupActivity.class);
+            else
+                intent = new Intent(getActivity(), GroupProfileActivity.class);
             Bundle b = new Bundle();
             b.putInt("id", Integer.parseInt(groups.getGroupId()));
             intent.putExtras(b);
