@@ -43,7 +43,7 @@ public class NewGroupActivity extends AppCompatActivity {
             String sTitle = title.getText().toString();
             String sDescription = description.getText().toString();
             if (sTitle.length() < 2 || sDescription.length() < 2) {
-                Toast.makeText(this, "Title/Description is to short", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Title/Description is too short", Toast.LENGTH_LONG).show();
                 return;
             }
             DatabaseHelper database_helper = new DatabaseHelper(getApplicationContext());

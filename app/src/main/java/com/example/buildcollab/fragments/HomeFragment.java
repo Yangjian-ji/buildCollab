@@ -214,11 +214,7 @@ public class HomeFragment extends Fragment {
     private MyGroupAdapter displayGroups() {
 
         MyGroupAdapter.OnItemClickListener listener = groups -> {
-            Intent intent;
-            if (database_helper.isUserInGroup(HomeActivity.getUserId(), groups.getGroupId()))
-                intent = new Intent(getActivity(), GroupActivity.class);
-            else
-                intent = new Intent(getActivity(), GroupProfileActivity.class);
+            Intent intent = new Intent(getActivity(), GroupProfileActivity.class);
             Bundle b = new Bundle();
             b.putInt("id", Integer.parseInt(groups.getGroupId()));
             intent.putExtras(b);

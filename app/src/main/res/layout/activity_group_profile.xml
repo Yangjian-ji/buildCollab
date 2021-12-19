@@ -78,6 +78,30 @@
                 android:background="@color/buttonColor"
                 android:text="@string/join" />
 
+            <Button
+                android:id="@+id/leaveGroup"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@id/groupPhoto"
+                android:background="@color/buttonColor"
+                android:text="Leave" />
+
+            <Button
+                android:id="@+id/deleteGroup"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@id/groupPhoto"
+                android:background="@color/buttonColor"
+                android:text="Delete group" />
+
             <TextView
 
                 android:id="@+id/groupName"
@@ -166,8 +190,20 @@
                 android:minHeight="48dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
-
+            <Button
+                android:id="@+id/messages"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/areaOfDiscussionText"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="20dp"
+                android:text="Messages:"
+                android:background="@color/buttonColor"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
 
     </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

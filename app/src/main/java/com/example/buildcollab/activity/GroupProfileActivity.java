@@ -25,7 +25,7 @@ public class GroupProfileActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         if (b == null)
             finish();
-        int groupId = b.getInt("id");
+        String groupId = String.valueOf(b.getInt("id"));
         DatabaseHelper database_helper = new DatabaseHelper(getApplicationContext());
         Groups groups = database_helper.getGroup(String.valueOf(groupId));
         TextView title = findViewById(R.id.groupName);
@@ -33,9 +33,36 @@ public class GroupProfileActivity extends AppCompatActivity {
         TextView description = findViewById(R.id.description);
         description.setText(groups.getDescription());
 
-
         Button askForInvite = findViewById(R.id.askForInvite);
         onclick.buttonEffect(askForInvite);
+
+        Button messages = findViewById(R.id.messages);
+        onclick.buttonEffect(messages);
+
+        Button deleteGroup = findViewById(R.id.deleteGroup);
+        onclick.buttonEffect(deleteGroup);
+
+        Button leaveGroup = findViewById(R.id.leaveGroup);
+        onclick.buttonEffect(leaveGroup);
+
+        if (database_helper.isUserInGroup(HomeActivity.getUserId(), groupId)) {
+            askForInvite.setVisibility(View.GONE);
+            messages.setVisibility(View.VISIBLE);
+
+            String groupOwner = database_helper.getGroup(groupId).getOwnerId();
+            if (groupOwner.equals(HomeActivity.getUserId())) {
+                leaveGroup.setVisibility(View.GONE);
+                deleteGroup.setVisibility(View.VISIBLE);
+            } else {
+                leaveGroup.setVisibility(View.VISIBLE);
+                deleteGroup.setVisibility(View.GONE);
+            }
+        } else {
+            askForInvite.setVisibility(View.VISIBLE);
+            messages.setVisibility(View.GONE);
+            deleteGroup.setVisibility(View.GONE);
+            leaveGroup.setVisibility(View.GONE);
+        }
 
         askForInvite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,10 +70,39 @@ public class GroupProfileActivity extends AppCompatActivity {
                 database_helper.addUserToGroup(HomeActivity.getUserId(), String.valueOf(groupId));
                 Intent intent = new Intent(GroupProfileActivity.this, GroupActivity.class);
                 Bundle b = new Bundle();
-                b.putInt("id", groupId);
+                b.putInt("id", Integer.parseInt(groupId));
                 intent.putExtras(b);
                 startActivity(intent);
 
+            }
+        });
+
+        messages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database_helper.addUserToGroup(HomeActivity.getUserId(), String.valueOf(groupId));
+                Intent intent = new Intent(GroupProfileActivity.this, GroupActivity.class);
+                Bundle b = new Bundle();
+                b.putInt("id", Integer.parseInt(groupId));
+                intent.putExtras(b);
+                startActivity(intent);
+
+            }
+        });
+
+        leaveGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database_helper.removeUserGroup(HomeActivity.getUserId(), groupId);
+                finish();
+            }
+        });
+
+        deleteGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database_helper.deleteGroup(groupId);
+                finish();
             }
         });
     }

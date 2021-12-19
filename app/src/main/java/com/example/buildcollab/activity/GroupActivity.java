@@ -29,8 +29,6 @@ public class GroupActivity extends AppCompatActivity {
     private Button newPost;
     private RecyclerView mRecyclerView;
     private DatabaseHelper database_helper;
-    private Button deleteGroup;
-    private Button leaveGroup;
     private TextView emptyView;
     private TextView groupTitle;
     private String groupId;
@@ -46,8 +44,6 @@ public class GroupActivity extends AppCompatActivity {
         newPost = findViewById(R.id.newPost);
         mRecyclerView = findViewById(R.id.reclycleview);
         emptyView = findViewById(R.id.emptyMessage);
-        deleteGroup = findViewById(R.id.deleteGroup);
-        leaveGroup = findViewById(R.id.leaveGroup);
         groupTitle = findViewById(R.id.groupName);
 
         database_helper = new DatabaseHelper(getApplicationContext());
@@ -57,23 +53,12 @@ public class GroupActivity extends AppCompatActivity {
 
         onclick.buttonEffect(goback);
         onclick.buttonEffect(newPost);
-        onclick.buttonEffect(deleteGroup);
-        onclick.buttonEffect(leaveGroup);
 
         Bundle b = getIntent().getExtras();
         if (b == null)
             finish();
         groupId = String.valueOf(b.getInt("id"));
         groupTitle.setText(database_helper.getGroup(groupId).getTitle());
-
-        String groupOwner = database_helper.getGroup(groupId).getOwnerId();
-        if (groupOwner.equals(HomeActivity.getUserId())) {
-            leaveGroup.setVisibility(View.GONE);
-            deleteGroup.setVisibility(View.VISIBLE);
-        } else {
-            leaveGroup.setVisibility(View.VISIBLE);
-            deleteGroup.setVisibility(View.GONE);
-        }
 
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,21 +90,7 @@ public class GroupActivity extends AppCompatActivity {
             }
         });
 
-        leaveGroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                database_helper.removeUserGroup(HomeActivity.getUserId(), groupId);
-                finish();
-            }
-        });
 
-        deleteGroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                database_helper.deleteGroup(groupId);
-                finish();
-            }
-        });
     }
 
     private void displayPosts() {
