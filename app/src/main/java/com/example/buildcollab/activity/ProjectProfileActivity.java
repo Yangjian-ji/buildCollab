@@ -1,6 +1,9 @@
 package com.example.buildcollab.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -18,7 +21,9 @@ public class ProjectProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_profile);
         ImageButton goback = findViewById(R.id.goback);
+        Button askforInvite = findViewById(R.id.askForInvite);
         goback.setOnClickListener(v -> finish());
+
 
         onclick.buttonEffect(goback);
 
@@ -32,5 +37,18 @@ public class ProjectProfileActivity extends AppCompatActivity {
         title.setText(project.getTitle());
         TextView description = findViewById(R.id.description);
         description.setText(project.getDescription());
+
+        onclick.buttonEffect(askforInvite);
+        askforInvite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database_helper.addUserToProject(HomeActivity.getUserId(), String.valueOf(projectId));
+                Intent intent = new Intent(ProjectProfileActivity.this, ProjectActivity.class);
+                Bundle b = new Bundle();
+                b.putInt("id", projectId);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
     }
 }

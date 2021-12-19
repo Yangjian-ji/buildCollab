@@ -487,7 +487,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void removeUserProject(String userId, String groupId) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        sqLiteDatabase.delete(USER_PROJECTS, "userId=" + userId + " and  groupId=" + groupId, null);
+        sqLiteDatabase.delete(USER_PROJECTS, "userId=" + userId + " and  projectId=" + groupId, null);
     }
 
 

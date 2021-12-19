@@ -21,96 +21,151 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="21dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/go_back"
                 tools:ignore="SpeakableTextPresentCheck" />
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/groupPhoto"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:src="@drawable/ic_baseline_person_24"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="0.5dp"
-                app:civ_circle_background_color="@color/white" />
-
-
-            <ImageView
-                android:id="@+id/qrcodeimage"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/ic_baseline_qr_code_24" />
-
             <TextView
-
-                android:id="@+id/projectTitle"
+                android:id="@+id/projectName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/groupPhoto"
                 android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/goback"
+                android:maxWidth="200dp"
                 android:text="@string/name"
-                android:textSize="25sp" />
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/editName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/groupPhoto"
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/projectPhoto"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_toEndOf="@id/projectTitle"
-                android:background="@drawable/ic_baseline_edit_24"
-                android:minWidth="30dp"
-                android:minHeight="30dp"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+
+                android:src="@drawable/ic_baseline_project_24"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="0.5dp" />
 
             <TextView
-                android:id="@+id/descriptionText"
+                android:id="@+id/memberN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/projectTitle"
+                android:layout_below="@id/projectPhoto"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:text="Member"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/leaveProject"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/projectPhoto"
+                android:layout_alignParentStart="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="250dp"
+                android:layout_marginTop="95dp"
+                android:background="@drawable/rectangle"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Leave project"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/deleteProject"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/projectPhoto"
+                android:layout_alignParentStart="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="250dp"
+                android:layout_marginTop="94dp"
+                android:background="@drawable/rectangle"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Delete project"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/projectName"
+                android:layout_alignParentStart="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/rectangle"
+                android:backgroundTint="@color/white"
+                android:drawableStart="@drawable/ic_baseline_search_24"
+                android:imeOptions="actionSearch"
+                android:inputType="textAutoCorrect"
+                android:paddingStart="15dp"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/importantNotes"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/search"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/rectangle"
+                android:backgroundTint="@color/white"
+                android:minHeight="100dp"
+                android:padding="10dp"
+                android:text="Important Notes:\n \n * ~~~~~~"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/goToProjectChat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/importantNotes"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/description"
-                android:textSize="25sp" />
+                android:background="@drawable/rectangle"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Project Chat"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
 
-            <ImageButton
-                android:id="@+id/editDescription"
+            <Button
+                android:id="@+id/goToFiles"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/projectTitle"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="15dp"
-                android:layout_toEndOf="@id/descriptionText"
-                android:background="@drawable/ic_baseline_edit_24"
-                android:minWidth="30dp"
-                android:minHeight="30dp"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/descriptionText"
+                android:layout_below="@id/goToProjectChat"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/input_text"
-                android:backgroundTint="@color/white"
-                android:minHeight="40dp"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rectangle"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Files"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
+
+
+            <Button
+                android:id="@+id/goToLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/goToFiles"
+
+
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Links"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
         </RelativeLayout>
 
     </ScrollView>

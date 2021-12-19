@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,9 +19,10 @@ import com.example.buildcollab.utils.onclick;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private ImageButton goback;
+    private ImageButton goback, editName, editDescription, editPortefolio, editWhatsAppContact;
     private ImageView qrcode;
     private Button gochat;
+    private EditText description, interest, portefolio;
     private int userId;
 
     @Override
@@ -28,6 +30,14 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Bundle b = getIntent().getExtras();
+
+        editName = findViewById(R.id.editName);
+        editDescription = findViewById(R.id.editDescription);
+        editPortefolio = findViewById(R.id.editPortefolio);
+        editWhatsAppContact = findViewById(R.id.editWhatsAppContact);
+        description = findViewById(R.id.description);
+        interest = findViewById(R.id.interest);
+        portefolio = findViewById(R.id.portefolio);
 
         gochat = findViewById(R.id.chat);
         if (b == null) {
@@ -40,7 +50,18 @@ public class ProfileActivity extends AppCompatActivity {
             name.setText(users.getName());
             TextView description = findViewById(R.id.description);
             description.setText(users.getDescription());
-
+            if (!String.valueOf(userId).equals(HomeActivity.getUserId())) {
+                editDescription.setVisibility(View.GONE);
+                gochat.setVisibility(View.GONE);
+                editName.setVisibility(View.GONE);
+                editPortefolio.setVisibility(View.GONE);
+                editWhatsAppContact.setVisibility(View.GONE);
+                description.setFocusable(false);
+                interest.setFocusable(false);
+                portefolio.setFocusable(false);
+            } else {
+                gochat.setVisibility(View.GONE);
+            }
         }
 
         goback = findViewById(R.id.goback);

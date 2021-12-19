@@ -68,6 +68,9 @@ public class GroupFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                Bundle b = new Bundle();
+                b.putInt("id", Integer.parseInt(HomeActivity.getUserId()));
+                intent.putExtras(b);
                 startActivity(intent);
             }
         });

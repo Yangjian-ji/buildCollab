@@ -37,9 +37,10 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@id/goback"
+                android:maxWidth="200dp"
                 android:text="@string/name"
                 android:textColor="@color/black"
-                android:textSize="35sp"
+                android:textSize="23sp"
                 android:textStyle="bold" />
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -62,11 +63,11 @@
                 android:id="@+id/search"
                 android:layout_width="250dp"
                 android:layout_height="60dp"
-                android:layout_below="@id/goback"
+                android:layout_below="@id/groupName"
                 android:layout_alignParentStart="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/rectangle"
                 android:backgroundTint="@color/white"
                 android:drawableStart="@drawable/ic_baseline_search_24"

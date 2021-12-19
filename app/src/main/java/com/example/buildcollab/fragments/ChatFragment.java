@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buildcollab.R;
+import com.example.buildcollab.activity.HomeActivity;
 import com.example.buildcollab.activity.ProfileActivity;
 
 public class ChatFragment extends Fragment {
@@ -44,6 +45,9 @@ public class ChatFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                Bundle b = new Bundle();
+                b.putInt("id", Integer.parseInt(HomeActivity.getUserId()));
+                intent.putExtras(b);
                 startActivity(intent);
             }
         });

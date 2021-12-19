@@ -17,8 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buildcollab.R;
-import com.example.buildcollab.activity.GroupActivity;
-import com.example.buildcollab.activity.GroupProfileActivity;
 import com.example.buildcollab.activity.HomeActivity;
 import com.example.buildcollab.activity.NewProjectActivity;
 import com.example.buildcollab.activity.ProfileActivity;
@@ -69,6 +67,9 @@ public class ProjectFragment extends Fragment {
 
         profile.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ProfileActivity.class);
+            Bundle b = new Bundle();
+            b.putInt("id", Integer.parseInt(HomeActivity.getUserId()));
+            intent.putExtras(b);
             startActivity(intent);
         });
         return InputFragmentView;

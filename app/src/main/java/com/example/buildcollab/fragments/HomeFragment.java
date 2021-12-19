@@ -77,6 +77,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                Bundle b = new Bundle();
+                b.putInt("id", Integer.parseInt(HomeActivity.getUserId()));
+                intent.putExtras(b);
                 startActivity(intent);
             }
         });
@@ -214,7 +217,11 @@ public class HomeFragment extends Fragment {
     private MyGroupAdapter displayGroups() {
 
         MyGroupAdapter.OnItemClickListener listener = groups -> {
-            Intent intent = new Intent(getActivity(), GroupProfileActivity.class);
+            Intent intent;
+            if (database_helper.isUserInGroup(HomeActivity.getUserId(), groups.getGroupId()))
+                intent = new Intent(getActivity(), GroupActivity.class);
+            else
+                intent = new Intent(getActivity(), GroupProfileActivity.class);
             Bundle b = new Bundle();
             b.putInt("id", Integer.parseInt(groups.getGroupId()));
             intent.putExtras(b);

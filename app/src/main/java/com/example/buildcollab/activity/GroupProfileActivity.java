@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -64,6 +65,7 @@ public class GroupProfileActivity extends AppCompatActivity {
             leaveGroup.setVisibility(View.GONE);
         }
 
+        onclick.buttonEffect(askForInvite);
         askForInvite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +79,8 @@ public class GroupProfileActivity extends AppCompatActivity {
             }
         });
 
+
+        onclick.buttonEffect(messages);
         messages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,18 +94,23 @@ public class GroupProfileActivity extends AppCompatActivity {
             }
         });
 
+        onclick.buttonEffect(leaveGroup);
         leaveGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 database_helper.removeUserGroup(HomeActivity.getUserId(), groupId);
+                Toast.makeText(getApplicationContext(), "You left this group", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
 
+
+        onclick.buttonEffect(deleteGroup);
         deleteGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 database_helper.deleteGroup(groupId);
+                Toast.makeText(getApplicationContext(),"You deleted this group", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
