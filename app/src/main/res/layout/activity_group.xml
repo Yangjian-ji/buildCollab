@@ -57,6 +57,34 @@
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="0.5dp" />
 
+            <Button
+                android:id="@+id/leaveGroup"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/groupPhoto"
+                android:layout_alignParentStart="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="250dp"
+                android:layout_marginTop="95dp"
+                android:background="@drawable/rectangle"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Leave group"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/deleteGroup"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/groupPhoto"
+                android:layout_alignParentStart="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="250dp"
+                android:layout_marginTop="95dp"
+                android:background="@drawable/rectangle"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Delete group"
+                android:textSize="20sp" />
+
             <EditText
                 android:id="@+id/search"
                 android:layout_width="250dp"
@@ -101,9 +129,35 @@
                 android:backgroundTint="@color/buttonColor"
                 android:text="New Post"
                 android:textSize="20sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reclycleview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/newPost"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+
+                android:layout_marginBottom="30dp"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:scrollbarSize="10dp"
+                android:scrollbars="vertical" />
+
+            <TextView
+                android:id="@+id/emptyMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:alpha="0.3"
+                android:layout_centerInParent="true"
+                android:text="Post the first message!"
+                android:textColor="#000000" />
         </RelativeLayout>
+
 
     </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 if (!exist)
-                    DatabaseHelper.addGroups("Fashion World", "This is Fashion description");
+                    DatabaseHelper.addGroups("Fashion World", "This is Fashion description", "0");
 
 
                 exist = false;
@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
                 if (!exist)
-                    DatabaseHelper.addProject("Game Developer", "We want create a game");
+                    DatabaseHelper.addProject("Game Developer", "We want create a game", "0");
                 //Fim --------------------------------------------------------------------
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

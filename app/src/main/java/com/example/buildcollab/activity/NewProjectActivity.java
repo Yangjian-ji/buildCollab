@@ -36,7 +36,7 @@ public class NewProjectActivity extends AppCompatActivity {
                 return;
             }
             DatabaseHelper database_helper = new DatabaseHelper(getApplicationContext());
-            String projectId = database_helper.addProject(sTitle, sDescription);
+            String projectId = database_helper.addProject(sTitle, sDescription, HomeActivity.getUserId());
             database_helper.addUserToProject(HomeActivity.getUserId(), projectId);
             Toast.makeText(this, "Project Created", Toast.LENGTH_LONG).show();
             finish();

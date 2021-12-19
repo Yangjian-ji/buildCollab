@@ -19,6 +19,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String USERS = "user";
     public static final String USER_GROUPS = "userGroups";
     public static final String USER_PROJECTS = "userProjects";
+    public static final String GROUP_POSTS = "groupPosts";
+    public static final String PROJECTS_POSTS = "projectsPosts";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -27,15 +29,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query;
-        query = "CREATE TABLE " + GROUPS + "(ID INTEGER PRIMARY KEY, Title TEXT, Description TEXT)";
+        query = "CREATE TABLE " + GROUPS + "(ID INTEGER PRIMARY KEY, Title TEXT, Description TEXT, Owner String)";
         db.execSQL(query);
-        query = "CREATE TABLE " + PROJECTS + "(ID INTEGER PRIMARY KEY, Title TEXT, Description TEXT)";
+        query = "CREATE TABLE " + PROJECTS + "(ID INTEGER PRIMARY KEY, Title TEXT, Description TEXT, Owner String)";
         db.execSQL(query);
         query = "CREATE TABLE " + USERS + "(ID INTEGER PRIMARY KEY, Name TEXT, Email TEXT, Password TEXT)";
         db.execSQL(query);
         query = "CREATE TABLE " + USER_GROUPS + "(ID INTEGER PRIMARY KEY, userId String, groupId String)";
         db.execSQL(query);
         query = "CREATE TABLE " + USER_PROJECTS + "(ID INTEGER PRIMARY KEY, userId String, projectId String)";
+        db.execSQL(query);
+        query = "CREATE TABLE " + GROUP_POSTS + "(ID INTEGER PRIMARY KEY, userId String, groupId String, Title TEXT, Message TEXT)";
+        db.execSQL(query);
+        query = "CREATE TABLE " + PROJECTS_POSTS + "(ID INTEGER PRIMARY KEY, userId String, groupId String, Title TEXT, Message TEXT)";
         db.execSQL(query);
     }
 
@@ -51,16 +57,96 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
         db.execSQL("DROP TABLE IF EXISTS " + USER_PROJECTS);
         onCreate(db);
+        db.execSQL("DROP TABLE IF EXISTS " + GROUP_POSTS);
+        onCreate(db);
+        db.execSQL("DROP TABLE IF EXISTS " + PROJECTS_POSTS);
+        onCreate(db);
     }
 
-    public String addGroups(String title, String des) {
+    public String addPostGroup(String userId, String groupId, String title, String message) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("userId", userId);
+        values.put("groupId", groupId);
+        values.put("Title", title);
+        values.put("Message", message);
+        Long id = sqLiteDatabase.insert(GROUP_POSTS, null, values);
+        return String.valueOf(id);
+    }
+
+    public void deletePostGroup(String postId) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.delete(GROUP_POSTS, " ID=" + postId, null);
+    }
+
+    public String addPostProject(String userId, String groupId, String title, String message) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("userId", userId);
+        values.put("groupId", groupId);
+        values.put("Title", title);
+        values.put("Message", message);
+        Long id = sqLiteDatabase.insert(PROJECTS_POSTS, null, values);
+        return String.valueOf(id);
+    }
+
+    public void deletePostProject(String groupId) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.delete(PROJECTS_POSTS, " ID=" + groupId, null);
+    }
+
+    public ArrayList<GroupPost> getPostsGroup(String groupId) {
+        ArrayList<GroupPost> arrayList = new ArrayList<>();
+
+        String select_query = "SELECT *FROM " + GROUP_POSTS + " WHERE groupId=" + groupId;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(select_query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                GroupPost post = new GroupPost();
+                post.setPostId(cursor.getString(0));
+                post.setUserId(cursor.getString(1));
+                post.setGroupId(cursor.getString(2));
+                post.setTitle(cursor.getString(3));
+                post.setMessage(cursor.getString(4));
+                arrayList.add(post);
+            } while (cursor.moveToNext());
+        }
+        return arrayList;
+    }
+
+    public ArrayList<ProjectPost> getPostsProject(String projectId) {
+        ArrayList<ProjectPost> arrayList = new ArrayList<>();
+
+        String select_query = "SELECT *FROM " + GROUP_POSTS + " WHERE groupId=" + projectId;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(select_query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                ProjectPost post = new ProjectPost();
+                post.setPostId(cursor.getString(0));
+                post.setUserId(cursor.getString(1));
+                post.setProjectId(cursor.getString(2));
+                post.setTitle(cursor.getString(3));
+                post.setMessage(cursor.getString(4));
+                arrayList.add(post);
+            } while (cursor.moveToNext());
+        }
+        return arrayList;
+    }
+
+    public String addGroups(String title, String des, String owner) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("Title", title);
         values.put("Description", des);
+        values.put("Owner", owner);
 
         Long id = sqLiteDatabase.insert(GROUPS, null, values);
-        sqLiteDatabase.close();
         return String.valueOf(id);
     }
 
@@ -74,6 +160,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             groups.setGroupId(cursor.getString(0));
             groups.setTitle(cursor.getString(1));
             groups.setDescription(cursor.getString(2));
+            groups.setOwnerId(cursor.getString(3));
             return groups;
         }
         return null;
@@ -93,6 +180,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 groups.setGroupId(cursor.getString(0));
                 groups.setTitle(cursor.getString(1));
                 groups.setDescription(cursor.getString(2));
+                groups.setOwnerId(cursor.getString(3));
                 arrayList.add(groups);
             } while (cursor.moveToNext());
         }
@@ -114,11 +202,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public String addProject(String title, String des) {
+    public String addProject(String title, String des, String owner) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("Title", title);
         values.put("Description", des);
+        values.put("Owner", owner);
 
         Long userId = sqLiteDatabase.insert(PROJECTS, null, values);
         sqLiteDatabase.close();
@@ -135,6 +224,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             project.setProjectId(cursor.getString(0));
             project.setTitle(cursor.getString(1));
             project.setDescription(cursor.getString(2));
+            project.setOwnerId(cursor.getString(3));
             return project;
         }
         return null;
@@ -154,6 +244,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 project.setProjectId(cursor.getString(0));
                 project.setTitle(cursor.getString(1));
                 project.setDescription(cursor.getString(2));
+                project.setOwnerId(cursor.getString(3));
                 arrayList.add(project);
             } while (cursor.moveToNext());
         }
@@ -174,6 +265,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 project.setProjectId(cursor.getString(0));
                 project.setTitle(cursor.getString(1));
                 project.setDescription(cursor.getString(2));
+                project.setOwnerId(cursor.getString(3));
                 arrayList.add(project);
             } while (cursor.moveToNext());
         }
@@ -289,6 +381,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(USER_GROUPS, null, values);
     }
 
+    public void removeUserGroup(String userId, String groupId) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.delete(USER_GROUPS, "userId=" + userId + " and groupId=" + groupId, null);
+    }
+
     public List<String> getGroups(String id) {
         String select_query = "SELECT * FROM " + USER_GROUPS + " WHERE userId=" + id;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -305,7 +402,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Groups> getGroupsBelong(String id) {
-        String select_query = "SELECT u1.ID, u1.Title, u1.Description from " + GROUPS + " as u1, " + USER_GROUPS + " as u2 where u1.id=u2.id and u2.userId=" + id;
+        String select_query = "SELECT u1.ID, u1.Title, u1.Description from " + GROUPS + " as u1, " + USER_GROUPS + " as u2 where u1.id=u2.groupId and u2.userId=" + id;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(select_query, null);
 
@@ -386,6 +483,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("projectId", projectId);
 
         sqLiteDatabase.insert(USER_PROJECTS, null, values);
+    }
+
+    public void removeUserProject(String userId, String groupId) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.delete(USER_PROJECTS, "userId=" + userId + " and  groupId=" + groupId, null);
     }
 
 

@@ -47,7 +47,7 @@ public class NewGroupActivity extends AppCompatActivity {
                 return;
             }
             DatabaseHelper database_helper = new DatabaseHelper(getApplicationContext());
-            String groupId = database_helper.addGroups(sTitle, sDescription);
+            String groupId = database_helper.addGroups(sTitle, sDescription, HomeActivity.getUserId());
             database_helper.addUserToGroup(HomeActivity.getUserId(), groupId);
             Toast.makeText(this, "Group Created", Toast.LENGTH_LONG).show();
             finish();

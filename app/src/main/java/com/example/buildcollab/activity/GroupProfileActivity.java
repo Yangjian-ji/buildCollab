@@ -42,6 +42,9 @@ public class GroupProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 database_helper.addUserToGroup(HomeActivity.getUserId(), String.valueOf(groupId));
                 Intent intent = new Intent(GroupProfileActivity.this, GroupActivity.class);
+                Bundle b = new Bundle();
+                b.putInt("id", groupId);
+                intent.putExtras(b);
                 startActivity(intent);
 
             }
