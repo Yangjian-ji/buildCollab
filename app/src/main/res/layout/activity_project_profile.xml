@@ -66,6 +66,7 @@
                 android:background="@color/buttonColor"
                 android:text="@string/ask_for_invite" />
 
+
             <TextView
 
                 android:id="@+id/projectName"
@@ -74,6 +75,7 @@
                 android:layout_below="@id/projectPhoto"
                 android:layout_centerHorizontal="true"
                 android:text="@string/name"
+                android:textColor="@color/black"
                 android:textSize="25sp" />
 
             <ImageButton
@@ -192,6 +194,34 @@
                 android:backgroundTint="@color/white"
                 android:minHeight="48dp"
                 tools:ignore="SpeakableTextPresentCheck" />
+
+
+            <Button
+                android:id="@+id/leaveProject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/requiredKnowledge"
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/rectangle"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Leave project"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/deleteProject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/requiredKnowledge"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/rectangle"
+                android:backgroundTint="@color/buttonColor"
+                android:text="Delete project"
+                android:textSize="12sp" />
         </RelativeLayout>
 
     </ScrollView>

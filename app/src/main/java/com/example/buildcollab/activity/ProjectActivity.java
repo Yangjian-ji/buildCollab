@@ -3,11 +3,10 @@ package com.example.buildcollab.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +17,9 @@ import com.example.buildcollab.utils.onclick;
 
 public class ProjectActivity extends AppCompatActivity {
 
-    private ImageButton goback;
+    private ImageButton goback, editproject, editDescription, editRequiredKnowledge;
+    private EditText description, areaOfWork, requiredKnowledge;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +27,6 @@ public class ProjectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_project);
         goback = findViewById(R.id.goback);
         goback.setOnClickListener(v -> finish());
-
-        Button leaveProject = findViewById(R.id.leaveProject);
-
-        Button deleteProject = findViewById(R.id.deleteProject);
 
 
         ImageView profile = findViewById(R.id.projectPhoto);
@@ -47,36 +44,6 @@ public class ProjectActivity extends AppCompatActivity {
         TextView projectName = findViewById(R.id.projectName);
         projectName.setText(project.getTitle());
 
-
-        String projectIdS = String.valueOf(b.getInt("id"));
-        String projectOwner = database_helper.getProject(projectIdS).getOwnerId();
-        if (projectOwner.equals(HomeActivity.getUserId())) {
-            leaveProject.setVisibility(View.GONE);
-            deleteProject.setVisibility(View.VISIBLE);
-        } else {
-            leaveProject.setVisibility(View.VISIBLE);
-            deleteProject.setVisibility(View.GONE);
-        }
-
-        onclick.buttonEffect(leaveProject);
-        leaveProject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                database_helper.removeUserProject(HomeActivity.getUserId(), projectIdS);
-                Toast.makeText(getApplicationContext(), "You left the project", Toast.LENGTH_LONG).show();
-                finish();
-            }
-        });
-
-        onclick.buttonEffect(deleteProject);
-        deleteProject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                database_helper.deleteProject(projectIdS);
-                Toast.makeText(getApplicationContext(), "You removed the project", Toast.LENGTH_LONG).show();
-                finish();
-            }
-        });
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override

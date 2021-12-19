@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +26,6 @@ import com.example.buildcollab.activity.HomeActivity;
 import com.example.buildcollab.activity.ProfileActivity;
 import com.example.buildcollab.activity.ProjectActivity;
 import com.example.buildcollab.activity.ProjectProfileActivity;
-import com.example.buildcollab.utils.DatabaseHelper;
-import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.DatabaseHelper;
 import com.example.buildcollab.utils.Groups;
 import com.example.buildcollab.utils.MyGroupAdapter;
@@ -107,8 +104,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
-                if (s.length() != 0)
+                if (s.length() != 0) {
                     displayAll(true, search.getText().toString());
+                } else {
+                    displayAll(true, "");
+                }
             }
         });
 
@@ -147,7 +147,7 @@ public class HomeFragment extends Fragment {
                 }
             }
             for (Users user : tmpusers) {
-                if (user.getName().toUpperCase().contains(filter.toUpperCase())|| filter.toUpperCase().contains("ANI")) {
+                if (user.getName().toUpperCase().contains(filter.toUpperCase()) || filter.toUpperCase().contains("ANI")) {
                     users.add(user);
                 }
             }

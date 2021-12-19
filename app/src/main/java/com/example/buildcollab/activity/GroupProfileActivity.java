@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,8 @@ import com.example.buildcollab.utils.Groups;
 import com.example.buildcollab.utils.onclick;
 
 public class GroupProfileActivity extends AppCompatActivity {
+    private ImageButton editproject, editDescription;
+    private EditText description, areaOfDiscussion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,11 @@ public class GroupProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_group_profile);
         onclick.buttonEffect(findViewById(R.id.goback));
         findViewById(R.id.goback).setOnClickListener(v -> finish());
+
+        editproject = findViewById(R.id.editproject);
+        editDescription = findViewById(R.id.editDescription);
+        description = findViewById(R.id.description);
+        areaOfDiscussion = findViewById(R.id.areaOfDiscussion);
 
         Bundle b = getIntent().getExtras();
         if (b == null)
@@ -46,6 +55,7 @@ public class GroupProfileActivity extends AppCompatActivity {
         Button leaveGroup = findViewById(R.id.leaveGroup);
         onclick.buttonEffect(leaveGroup);
 
+
         if (database_helper.isUserInGroup(HomeActivity.getUserId(), groupId)) {
             askForInvite.setVisibility(View.GONE);
             messages.setVisibility(View.VISIBLE);
@@ -54,15 +64,24 @@ public class GroupProfileActivity extends AppCompatActivity {
             if (groupOwner.equals(HomeActivity.getUserId())) {
                 leaveGroup.setVisibility(View.GONE);
                 deleteGroup.setVisibility(View.VISIBLE);
+
             } else {
                 leaveGroup.setVisibility(View.VISIBLE);
                 deleteGroup.setVisibility(View.GONE);
+                editproject.setVisibility(View.GONE);
+                editDescription.setVisibility(View.GONE);
+                description.setFocusable(false);
+                areaOfDiscussion.setFocusable(false);
             }
         } else {
             askForInvite.setVisibility(View.VISIBLE);
             messages.setVisibility(View.GONE);
             deleteGroup.setVisibility(View.GONE);
             leaveGroup.setVisibility(View.GONE);
+            editproject.setVisibility(View.GONE);
+            editDescription.setVisibility(View.GONE);
+            description.setFocusable(false);
+            areaOfDiscussion.setFocusable(false);
         }
 
         onclick.buttonEffect(askForInvite);
@@ -74,6 +93,7 @@ public class GroupProfileActivity extends AppCompatActivity {
                 Bundle b = new Bundle();
                 b.putInt("id", Integer.parseInt(groupId));
                 intent.putExtras(b);
+                Toast.makeText(GroupProfileActivity.this, "Invite Requested", Toast.LENGTH_LONG).show();
                 startActivity(intent);
 
             }
@@ -110,7 +130,7 @@ public class GroupProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 database_helper.deleteGroup(groupId);
-                Toast.makeText(getApplicationContext(),"You deleted this group", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "You deleted this group", Toast.LENGTH_LONG).show();
                 finish();
             }
         });

@@ -67,33 +67,7 @@
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
-            <Button
-                android:id="@+id/leaveProject"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/projectPhoto"
-                android:layout_alignParentStart="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="250dp"
-                android:layout_marginTop="95dp"
-                android:background="@drawable/rectangle"
-                android:backgroundTint="@color/buttonColor"
-                android:text="Leave project"
-                android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/deleteProject"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/projectPhoto"
-                android:layout_alignParentStart="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="250dp"
-                android:layout_marginTop="94dp"
-                android:background="@drawable/rectangle"
-                android:backgroundTint="@color/buttonColor"
-                android:text="Delete project"
-                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/search"
