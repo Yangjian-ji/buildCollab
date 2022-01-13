@@ -52,7 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
             description.setText(users.getDescription());
             if (!String.valueOf(userId).equals(HomeActivity.getUserId())) {
                 editDescription.setVisibility(View.GONE);
-                gochat.setVisibility(View.GONE);
+                gochat.setVisibility(View.VISIBLE);
                 editName.setVisibility(View.GONE);
                 editPortefolio.setVisibility(View.GONE);
                 editWhatsAppContact.setVisibility(View.GONE);
